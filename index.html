@@ -1,821 +1,1501 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduViz DSA | Learn Data Structures & Algorithms the Nigeria Way</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/main.css"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <base href="/DSA/">
-</head>
-<body class="bg-white text-[#111827] font-body">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      EduViz DSA | Learn Data Structures & Algorithms the Nigeria Way
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <base href="/DSA/" />
+  </head>
+  <body class="bg-white text-[#111827] font-body">
+    <!-- ONBOARDING TOUR -->
+    <div
+      id="tour-overlay"
+      class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4"
+    >
+      <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
+        <div id="tour-icon" class="text-[32px] mb-3"></div>
+        <h3
+          id="tour-title"
+          class="font-display font-bold text-[18px] mb-2"
+        ></h3>
+        <p
+          id="tour-body"
+          class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"
+        ></p>
 
-  <!-- ONBOARDING TOUR -->
-  <div id="tour-overlay" class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4">
-    <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
-      <div id="tour-icon" class="text-[32px] mb-3"></div>
-      <h3 id="tour-title" class="font-display font-bold text-[18px] mb-2"></h3>
-      <p id="tour-body" class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"></p>
-
-      <div class="flex items-center justify-between">
-        <div id="tour-dots" class="flex gap-1.5"></div>
-        <div class="flex items-center gap-3">
-          <button id="tour-skip-btn" class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]">Skip</button>
-          <button id="tour-next-btn" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]">Next</button>
+        <div class="flex items-center justify-between">
+          <div id="tour-dots" class="flex gap-1.5"></div>
+          <div class="flex items-center gap-3">
+            <button
+              id="tour-skip-btn"
+              class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]"
+            >
+              Skip
+            </button>
+            <button
+              id="tour-next-btn"
+              class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- TOP NAVIGATION BAR -->
-  <header class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50">
+    <!-- TOP NAVIGATION BAR -->
+    <header
+      class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50"
+    >
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 shrink-0">
+        <!-- Bar chart logo: three SVG rectangles, middle bar is tallest -->
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style="display: block"
+        >
+          <rect x="2" y="16" width="6" height="10" rx="1.5" fill="#0D9488" />
+          <rect x="11" y="6" width="6" height="20" rx="1.5" fill="#0D9488" />
+          <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488" />
+        </svg>
 
-    <!-- Logo -->
-    <a href="index.html" class="flex items-center gap-2 shrink-0">
-
-    <!-- Bar chart logo: three SVG rectangles, middle bar is tallest -->
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
-      <rect x="2"  y="16" width="6" height="10" rx="1.5" fill="#0D9488"/>
-      <rect x="11" y="6"  width="6" height="20" rx="1.5" fill="#0D9488"/>
-      <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488"/>
-    </svg>
-
-    <!-- Site name next to the logo -->
-    <span class="font-ui font-bold text-[15px] leading-none">EduViz <span class="text-[#0D9488]">DSA</span></span>
-
-    </a>
-
-    <!-- Search box -->
-    <div class="flex-1 max-w-[380px]">
-      <input
-        type="search"
-        placeholder="Search a topic, operation, or question..."
-        class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
-      />
-    </div>
-
-    <!-- Right side: Pidgin toggle + button -->
-    <div class="ml-auto flex items-center gap-3">
-
-      <!-- Pidgin toggle -->
-      <div class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5">
-        <span class="text-[11px] font-semibold text-[#0D9488] font-ui">EN</span>
-        <button
-          id="pidgin-toggle"
-          class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
-          aria-pressed="false"
-          aria-label="Toggle Pidgin explanations">
-          <span class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"></span>
-        </button>
-        <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui">Pidgin</span>
-      </div>
-
-      <!-- Start Learning button -->
-      <a href="/pages/arrays.html" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui">
-        Start Learning
+        <!-- Site name next to the logo -->
+        <span class="font-ui font-bold text-[15px] leading-none"
+          >EduViz <span class="text-[#0D9488]">DSA</span></span
+        >
       </a>
 
-    </div>
+      <!-- Search box -->
+      <div class="flex-1 max-w-[380px]">
+        <input
+          type="search"
+          placeholder="Search a topic, operation, or question..."
+          class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
+        />
+      </div>
 
-  </header>
+      <!-- Right side: Pidgin toggle + button -->
+      <div class="ml-auto flex items-center gap-3">
+        <!-- Pidgin toggle -->
+        <div
+          class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5"
+        >
+          <span class="text-[11px] font-semibold text-[#0D9488] font-ui"
+            >EN</span
+          >
+          <button
+            id="pidgin-toggle"
+            class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
+            aria-pressed="false"
+            aria-label="Toggle Pidgin explanations"
+          >
+            <span
+              class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"
+            ></span>
+          </button>
+          <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui"
+            >Pidgin</span
+          >
+        </div>
 
-  <!-- sidebar + main content side by side -->
-  <div class="flex">
+        <!-- Start Learning button -->
+        <a
+          href="pages/arrays.html"
+          class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui"
+        >
+          Start Learning
+        </a>
+      </div>
+    </header>
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto">
+    <!-- sidebar + main content side by side -->
+    <div class="flex">
+      <!-- LEFT SIDEBAR -->
+      <aside
+        class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto"
+      >
+        <!-- EXPLORE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1"
+        >
+          Explore
+        </p>
+        <a
+          href="index.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]"
+        >
+          <i data-lucide="home" class="w-4 h-4"></i> Home</a
+        >
+        <a
+          href=""
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a
+        >
 
-    <!-- EXPLORE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1">Explore</p>
-    <a href="index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]">
-      <i data-lucide="home" class="w-4 h-4"></i> Home</a>
-    <a href="" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a>
+        <!-- DATA STRUCTURES -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Data Structures
+        </p>
+        <a
+          href="pages/arrays.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
+        </a>
+        <a
+          href="pages/linked-list.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked
+          List
+        </a>
+        <a
+          href="pages/stack.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
+        </a>
+        <a
+          href="pages/queue.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
+        </a>
 
-    <!-- DATA STRUCTURES -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Data Structures</p>
-    <a href="/pages/arrays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
-    </a>
-    <a href="/pages/linked-list.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked List
-    </a>
-    <a href="/pages/stack.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
-    </a>
-    <a href="/pages/queue.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
-    </a>
+        <!-- ALGORITHMS -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Algorithms
+        </p>
+        <a
+          href="pages/linear-search.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear
+          Search
+        </a>
+        <a
+          href="pages/binary-search.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary
+          Search
+        </a>
+        <a
+          href="pages/bubble-sort.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble
+          Sort
+        </a>
 
-    <!-- ALGORITHMS -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Algorithms</p>
-    <a href="/pages/linear-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear Search
-    </a>
-    <a href="/pages/binary-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary Search
-    </a>
-    <a href="/pages/bubble-sort.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble Sort
-    </a>
+        <!-- PRACTICE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Practice
+        </p>
+        <a
+          href="pages/practice.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a
+        >
+        <a
+          href="pages/practice.html#past-questions"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a
+        >
 
-    <!-- PRACTICE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Practice</p>
-    <a href="pages/practice.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a>
-    <a href="pages/practice.html#past-questions" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a>
+        <!-- MORE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          More
+        </p>
+        <a
+          href="pages/about.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="info" class="w-4 h-4"></i> About Project</a
+        >
 
-    <!-- MORE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">More</p>
-    <a href="pages/about.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="info" class="w-4 h-4"></i> About Project</a>
+        <button
+          id="tour-help-btn"
+          type="button"
+          class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+        >
+          <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour
+        </button>
+      </aside>
 
-
-    <button id="tour-help-btn" type="button" class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]" 
-    style="font-family: 'Space Grotesk', sans-serif;"> <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour</button>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 px-9 pb-7">
-
-      <!-- HERO SECTION -->
-      <section class="pt-8 pb-6 px-8 -mx-9 mb-10 bg-[#F5F5F5]">
-      <p class="text-[11px] font-bold font-ui tracking-widest text-[#6B7280] uppercase mb-3 pt-4">Welcome</p>
-
-      <div class="grid grid-cols-[1fr_240px] gap-6 items-start mb-7">
-
-        <!-- Left: headline, feature list, CTA button -->
-        <div>
-          <h1 class="font-display font-bold text-[38px] leading-[1.15] mb-3 pt-4">
-          Learn Data Structures & Algorithms <br/>
-          <em class="text-[#0D9488] italic">the Nigerian way.</em>
-          </h1>
-
-          <p class="text-[13px] text-[#6B7280] leading-[1.75] max-w-[400px] mb-4 font-body">
-            Interactive visualizations of Data Structures and Algorithms,
-            with examples from your world, explanations in Pidgin, and
-            practice questions from your actual CSC exam.
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 px-9 pb-7">
+        <!-- HERO SECTION -->
+        <section class="pt-8 pb-6 px-8 -mx-9 mb-10 bg-[#F5F5F5]">
+          <p
+            class="text-[11px] font-bold font-ui tracking-widest text-[#6B7280] uppercase mb-3 pt-4"
+          >
+            Welcome
           </p>
 
-          <!-- Feature list -->
-          <ul class="flex flex-row flex-wrap gap-x-5 gap-y-2 mb-5 list-none pt-2">
-            <li class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body">
-              <span class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
-              </span>
-              Interactive step through animations
-            </li>
-            <li class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body">
-              <span class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
-              </span>
-              Nigerian context examples for every concept
-            </li>
-            <li class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body">
-              <span class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
-              </span>
-              Toggleable Pidgin explanations
-            </li>
-            <li class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body">
-              <span class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
-              </span>
-              Past CSC DSA exam questions included
-            </li>
-          </ul>
+          <div class="grid grid-cols-[1fr_240px] gap-6 items-start mb-7">
+            <!-- Left: headline, feature list, CTA button -->
+            <div>
+              <h1
+                class="font-display font-bold text-[38px] leading-[1.15] mb-3 pt-4"
+              >
+                Learn Data Structures & Algorithms <br />
+                <em class="text-[#0D9488] italic">the Nigerian way.</em>
+              </h1>
 
-          <a href="./pages/arrays.html" class="inline-block px-6 py-2.5 bg-[#0D9488] text-white rounded-lg font-bold text-[13px] font-ui">
-            Start Learning →
-          </a>
-        </div>
-
-        <!-- Right: Did You Know card -->
-        <div id="did-you-know" class="bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-4">
-          <div class="flex items-center gap-1.5 mb-2">
-            <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
-            <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">Did You Know?</span>
-          </div>
-          <p id="dyk-text" class="text-[11px] text-[#134E4A] leading-[1.65] mb-2 font-body">
-            Donald Knuth first formally defined algorithms in his 1968 book <strong class="text-[#111827]">"The Art of Computer Programming",</strong> which is still a gold standard reference today.
-          </p>
-          <div class="h-[2px] bg-[#99F6E4] rounded overflow-hidden mb-2">
-            <div id="dyk-bar" class="h-full bg-[#0D9488]" style="width:0%"></div>
-          </div>
-          <div id="dyk-dots" class="flex gap-1.5"></div>
-        </div>
-
-      </div>
-
-      </section>
-
-
-    <!-- THE BASICS -->
-    <div class="mb-4">
-      <span class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3">
-        The Basics
-      </span>
-      <h2 class="font-display font-bold text-[24px] mb-2">What exactly is DSA?</h2>
-      <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mb-5">
-        No jargon, no confusion. Just a clear explanation, even if this is the
-        first time you're hearing about it. Every app you use is built on these
-        two ideas working together.
-      </p>
-    </div>
-
-    <!-- DSA INTRO STRIP -->
-    <div class="grid grid-cols-3 gap-4 mb-14">
-
-      <!-- Card 1: Data Structure -->
-      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-        <div class="w-10 h-10 rounded-lg bg-[#F0FDFA] flex items-center justify-center mb-3">
-          <i data-lucide="database" class="w-5 h-5 text-teal-700"></i>
-        </div>
-        <h4 class="text-[13px] font-bold font-ui mb-2">Data Structure</h4>
-        <p class="text-[12px] text-[#6B7280] leading-[1.65] font-body">
-          Think of it like how you arrange things in your room. A data
-          structure is simply a way of <strong class="text-[#111827] font-semibold">organizing information</strong>
-          so a computer can find and use it quickly.
-        </p>
-        <div class="mt-3 pt-3 border-t border-[#F3F4F6]">
-          <p class="text-[10px] text-[#9CA3AF] italic leading-[1.6] font-body">
-            <span class="font-semibold not-italic text-[#6B7280]">Formal definition:</span> A data structure is a specialized format for organizing, 
-            processing, retrieving, and storing data, so it can be used efficiently (Cormen et al., 2022).
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 2: Algorithm -->
-      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-        <div class="w-10 h-10 rounded-lg bg-[#F3F4F6] flex items-center justify-center mb-3">
-        <i data-lucide="workflow" class="w-5 h-5 text-gray-700"></i>
-        </div>
-        <h4 class="text-[13px] font-bold font-ui mb-2">Algorithm</h4>
-        <p class="text-[12px] text-[#6B7280] leading-[1.65] font-body">
-          An algorithm is a <strong class="text-[#111827] font-semibold">step-by-step method</strong>
-          for solving a problem — like a recipe. When you arrange market
-          goods so customers find items fast, you're thinking algorithmically.
-        </p>
-        <div class="mt-3 pt-3 border-t border-[#F3F4F6]">
-          <p class="text-[10px] text-[#9CA3AF] italic leading-[1.6] font-body">
-            <span class="font-semibold not-italic text-[#6B7280]">Formal definition:</span> An algorithm is a finite, well-defined, 
-            step-by-step procedure for solving a computational problem.
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3: Why it matters -->
-      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-      <div class="w-10 h-10 rounded-lg bg-[#F0FDF4] flex items-center justify-center mb-3">
-        <i data-lucide="globe" class="w-5 h-5 text-emerald-600"></i>
-      </div>
-        <h4 class="text-[13px] font-bold font-ui mb-2">Why it matters</h4>
-        <p class="text-[12px] text-[#6B7280] leading-[1.65] font-body">
-          Every app you use: OPay, WhatsApp, Google, runs on data
-          structures and algorithms underneath. Learning DSA means
-          understanding <strong class="text-[#111827] font-semibold">how software really works</strong>.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- PROGRAMMING LANGUAGES STRIP -->
-    <div class="mb-10">
-
-      <div class="mb-4">
-        <span class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-2">
-          Language Independent
-        </span>
-        <h2 class="font-display font-bold text-[22px]">DSA works in every language</h2>
-        <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mt-2 mb-5">
-          Data structures and algorithms are not tied to any programming language.
-          A stack behaves the same way whether you write it in Python, C, Java, or
-          JavaScript — only the syntax changes. This is what makes DSA the true
-          foundation of software development.
-        </p>
-      </div>
-
-      <!-- Language tags strip -->
-      <div class="flex flex-wrap gap-3 mb-6">
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <span class="text-[16px]">🐍</span>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">Python</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <i data-lucide="coffee" class="w-4 h-4 text-amber-600"></i>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">Java</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <i data-lucide="cpu" class="w-4 h-4 text-indigo-600"></i>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">C / C++</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <i data-lucide="file-code" class="w-4 h-4 text-yellow-600"></i>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">JavaScript</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <i data-lucide="gem" class="w-4 h-4 text-red-500"></i>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">Ruby</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <i data-lucide="shield" class="w-4 h-4 text-orange-600"></i>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">Rust</span>
-        </div>
-        <div class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm">
-          <i data-lucide="server" class="w-4 h-4 text-purple-600"></i>
-          <span class="text-[12px] font-bold font-ui text-[#111827]">PHP</span>
-        </div>
-        <div class="flex items-center gap-2 bg-[#F0FDFA] border border-[#CCFBF1] rounded-lg px-4 py-2.5 shadow-sm">
-          <span class="text-[12px] font-bold font-ui text-[#0D9488]">+ many more</span>
-        </div>
-      </div>
-
-      <!-- Same concept, different syntax three column comparison -->
-      <div class="bg-[#111827] rounded-xl p-5">
-        <p class="text-[11px] font-bold font-ui text-[#9CA3AF] tracking-wider uppercase mb-4">
-          Same concept. Stack Push operation across three languages
-        </p>
-        <div class="grid grid-cols-3 gap-4">
-
-          <!-- Python -->
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-[13px]">🐍</span>
-              <span class="text-[11px] font-bold font-ui text-[#9CA3AF]">Python</span>
-            </div>
-            <div class="bg-[#1E293B] rounded-lg p-3">
-              <p class="font-code text-[11px] leading-[1.8]">
-                <span class="text-[#94A3B8]">stack = []</span><br/>
-                <span class="text-[#0D9488]">stack</span><span class="text-[#94A3B8]">.</span><span class="text-[#38BDF8]">append</span><span class="text-[#94A3B8]">(</span><span class="text-[#FB923C]">10</span><span class="text-[#94A3B8]">)</span><br/>
-                <span class="text-[#0D9488]">stack</span><span class="text-[#94A3B8]">.</span><span class="text-[#38BDF8]">append</span><span class="text-[#94A3B8]">(</span><span class="text-[#FB923C]">20</span><span class="text-[#94A3B8]">)</span><br/>
-                <span class="text-[#64748B]"># stack = [10, 20]</span>
+              <p
+                class="text-[13px] text-[#6B7280] leading-[1.75] max-w-[400px] mb-4 font-body"
+              >
+                Interactive visualizations of Data Structures and Algorithms,
+                with examples from your world, explanations in Pidgin, and
+                practice questions from your actual CSC exam.
               </p>
-            </div>
-          </div>
 
-          <!-- Java -->
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <i data-lucide="coffee" class="w-4 h-4 text-amber-600"></i>
-              <span class="text-[11px] font-bold font-ui text-[#9CA3AF]">Java</span>
-            </div>
-            <div class="bg-[#1E293B] rounded-lg p-3">
-              <p class="font-code text-[11px] leading-[1.8]">
-                <span class="text-[#38BDF8]">Stack</span><span class="text-[#94A3B8]">&lt;</span><span class="text-[#38BDF8]">Integer</span><span class="text-[#94A3B8]">&gt;</span><br/>
-                <span class="text-[#0D9488]">s</span> <span class="text-[#94A3B8]">= new</span> <span class="text-[#38BDF8]">Stack</span><span class="text-[#94A3B8]">();</span><br/>
-                <span class="text-[#0D9488]">s</span><span class="text-[#94A3B8]">.</span><span class="text-[#38BDF8]">push</span><span class="text-[#94A3B8]">(</span><span class="text-[#FB923C]">10</span><span class="text-[#94A3B8]">);</span><br/>
-                <span class="text-[#0D9488]">s</span><span class="text-[#94A3B8]">.</span><span class="text-[#38BDF8]">push</span><span class="text-[#94A3B8]">(</span><span class="text-[#FB923C]">20</span><span class="text-[#94A3B8]">);</span>
-              </p>
-            </div>
-          </div>
+              <!-- Feature list -->
+              <ul
+                class="flex flex-row flex-wrap gap-x-5 gap-y-2 mb-5 list-none pt-2"
+              >
+                <li
+                  class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body"
+                >
+                  <span
+                    class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
+                  </span>
+                  Interactive step through animations
+                </li>
+                <li
+                  class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body"
+                >
+                  <span
+                    class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
+                  </span>
+                  Nigerian context examples for every concept
+                </li>
+                <li
+                  class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body"
+                >
+                  <span
+                    class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
+                  </span>
+                  Toggleable Pidgin explanations
+                </li>
+                <li
+                  class="flex items-center gap-2 text-[12px] text-[#6B7280] font-body"
+                >
+                  <span
+                    class="w-3.5 h-3.5 rounded-full border-2 border-[#0D9488] flex items-center justify-center shrink-0"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0D9488]"></span>
+                  </span>
+                  Past CSC DSA exam questions included
+                </li>
+              </ul>
 
-          <!-- JavaScript -->
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <i data-lucide="file-code" class="w-4 h-4 text-yellow-600"></i>
-              <span class="text-[11px] font-bold font-ui text-[#9CA3AF]">JavaScript</span>
-            </div>
-            <div class="bg-[#1E293B] rounded-lg p-3">
-              <p class="font-code text-[11px] leading-[1.8]">
-                <span class="text-[#94A3B8]">const</span> <span class="text-[#0D9488]">stack</span> <span class="text-[#94A3B8]">= [];</span><br/>
-                <span class="text-[#0D9488]">stack</span><span class="text-[#94A3B8]">.</span><span class="text-[#38BDF8]">push</span><span class="text-[#94A3B8]">(</span><span class="text-[#FB923C]">10</span><span class="text-[#94A3B8]">);</span><br/>
-                <span class="text-[#0D9488]">stack</span><span class="text-[#94A3B8]">.</span><span class="text-[#38BDF8]">push</span><span class="text-[#94A3B8]">(</span><span class="text-[#FB923C]">20</span><span class="text-[#94A3B8]">);</span><br/>
-                <span class="text-[#64748B]">// stack = [10, 20]</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
-        <p class="text-[10px] text-[#475569] font-body mt-4 text-center">
-          The concept is identical across all three; push adds to the top. Only the syntax differs.
-        </p>
-      </div>
-
-    </div>
-
-    <!-- DATA STRUCTURES SECTION -->
-    <section class="pt-8 pb-6 px-8 -mx-9 mb-10 bg-[#F5F5F5]">
-      <div class="mb-4">
-        <div class="flex items-baseline justify-between mb-4">
-          <div>
-            <span class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3">
-              Data Structures
-            </span>
-            <h2 class="font-display font-bold text-[24px] mb-2">Choose a structure to explore</h2>
-            <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mb-5">
-            A new way to learn. Each structure has a static preview, a short description, and a list of operations you can perform on it. Click <b>"Explore"</b> to see the structure in action.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-5">
-        <!-- ARRAY CARD -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-          <div class="flex items-center justify-between mb-4">
-            <span class="bg-[#EFF6FF] text-[#3B82F6] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Arrays</span>
-            <span class="text-[11px] text-[#9CA3AF] font-body">4 operations</span>
-          </div>
-
-          <!-- Static preview: array boxes -->
-          <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5">
-            <div class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]">5</div>
-            <div class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-white bg-[#3B82F6]">12</div>
-            <div class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]">8</div>
-            <div class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]">3</div>
-            <div class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]">19</div>
-          </div>
-
-          <h3 class="text-[14px] font-bold font-ui mb-1">Array</h3>
-          <p class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3">
-            A collection of items stored in a continuous block of memory. Like seats on a BRT bus numbered in order, easy to access by position.
-          </p>
-
-          <!-- Operations -->
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Access</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Insert</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Delete</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Search</span>
-          </div>
-
-          <a href="/pages/arrays.html" class="text-[12px] font-bold font-ui text-[#3B82F6] hover:underline">Explore Array →</a>
-        </div>
-
-        <!-- LINKED LIST CARD -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-          <div class="flex items-center justify-between mb-4">
-            <span class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Linked Lists</span>
-            <span class="text-[11px] text-[#9CA3AF] font-body">4 operations</span>
-          </div>
-
-          <!-- Static preview: linked list nodes -->
-          <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1">
-            <div class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[13px] font-code text-[#7C3AED]">A</div>
-            <span class="text-[#7C3AED] font-bold text-[14px]">→</span>
-            <div class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[13px] font-code text-[#7C3AED]">B</div>
-            <span class="text-[#7C3AED] font-bold text-[14px]">→</span>
-            <div class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[13px] font-code text-[#7C3AED]">C</div>
-            <span class="text-[#7C3AED] font-bold text-[14px]">→</span>
-            <span class="text-[12px] font-code text-[#9CA3AF]">NULL</span>
-          </div>
-
-          <h3 class="text-[14px] font-bold font-ui mb-1">Singly Linked List</h3>
-          <p class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3">
-            Each item points to the next like passengers in a danfo bus. Each person knows who is sitting in front of them, but not behind.
-          </p>
-
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Insert Head</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Insert Tail</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Delete</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Traverse</span>
-          </div>
-
-          <a href="/pages/linked-list.html" class="text-[12px] font-bold font-ui text-[#7C3AED] hover:underline">Explore Linked List →</a>
-        </div>
-
-        <!-- STACK CARD -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-          <div class="flex items-center justify-between mb-4">
-            <span class="bg-[#ECFDF5] text-[#059669] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Stacks</span>
-            <span class="text-[11px] text-[#9CA3AF] font-body">3 operations</span>
-          </div>
-
-          <!-- Static preview: stack plates -->
-          <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex flex-col gap-1.5">
-            <div class="w-full h-9 bg-[#059669] rounded-lg flex items-center justify-between px-3">
-              <span class="text-[12px] font-code text-white">Egusi</span>
-              <span class="text-[10px] font-bold font-ui text-white opacity-80">← TOP</span>
-            </div>
-            <div class="w-full h-9 border-2 border-[#059669] rounded-lg flex items-center px-3">
-              <span class="text-[12px] font-code text-[#059669]">Jollof</span>
-            </div>
-            <div class="w-full h-9 border-2 border-[#059669] rounded-lg flex items-center px-3">
-              <span class="text-[12px] font-code text-[#059669]">Rice</span>
-            </div>
-          </div>
-
-          <h3 class="text-[14px] font-bold font-ui mb-1">Stack</h3>
-          <p class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3">
-            Last in, first out like a pile of plates in a bukateria. The last plate placed on top is always the first one taken.
-          </p>
-
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Push</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Pop</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Peek</span>
-          </div>
-
-          <a href="/pages/stack.html" class="text-[12px] font-bold font-ui text-[#059669] hover:underline">Explore Stack →</a>
-        </div>
-
-        <!-- QUEUE CARD -->
-        <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-          <div class="flex items-center justify-between mb-4">
-            <span class="bg-[#FFFBEB] text-[#D97706] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Queues</span>
-            <span class="text-[11px] text-[#9CA3AF] font-body">3 operations</span>
-          </div>
-
-          <!-- Static preview: queue with FRONT and REAR -->
-          <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5">
-            <span class="text-[10px] font-bold font-ui text-[#D97706] shrink-0">FRONT→</span>
-            <div class="flex-1 h-9 bg-[#D97706] rounded-lg flex items-center justify-center">
-              <span class="text-[12px] font-code text-white">Ama</span>
-            </div>
-            <div class="flex-1 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center">
-              <span class="text-[12px] font-code text-[#D97706]">Tunde</span>
-            </div>
-            <div class="flex-1 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center">
-              <span class="text-[12px] font-code text-[#D97706]">Kemi</span>
-            </div>
-            <span class="text-[10px] font-bold font-ui text-[#D97706] shrink-0">←REAR</span>
-          </div>
-
-          <h3 class="text-[14px] font-bold font-ui mb-1">Queue</h3>
-          <p class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3">
-            First in, first out like an ATM queue in Nigeria. Whoever arrived first gets served first. Fair and orderly.
-          </p>
-
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Enqueue</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Dequeue</span>
-            <span class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body">Peek</span>
-          </div>
-
-          <a href="/pages/queue.html" class="text-[12px] font-bold font-ui text-[#D97706] hover:underline">Explore Queue →</a>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- ALGORITHMS SECTION -->
-    <section>
-      <div class="mb-10">
-
-        <div class="flex items-baseline justify-between mb-4">
-          <div>
-            <span class="inline-block bg-[#FEF2F2] text-[#DC2626] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-2">
-              Algorithms
-            </span>
-              <h2 class="font-display font-bold text-[22px]">How do we process data?</h2>
-              <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mt-2 mb-5">
-              An algorithm is a step-by-step procedure applied to data to produce a result.
-              The three algorithms below are among the first every computing student encounters
-              and understanding them builds the foundation for everything more advanced.
-              </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-5">
-
-          <!-- Linear Search -->
-          <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-center justify-between mb-4">
-              <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Linear Search</span>
-              <span class="text-[11px] font-code text-[#9CA3AF]">O(n)</span>
+              <a
+                href="./pages/arrays.html"
+                class="inline-block px-6 py-2.5 bg-[#0D9488] text-white rounded-lg font-bold text-[13px] font-ui"
+              >
+                Start Learning →
+              </a>
             </div>
 
-            <!-- Static preview -->
-            <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5">
-              <div class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-[#DC2626] bg-[#FEF2F2]">3</div>
-              <div class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-[#DC2626] bg-[#FEF2F2]">7</div>
-              <div class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-white bg-[#DC2626]">12</div>
-              <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">19</div>
-              <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">25</div>
-            </div>
-
-            <h3 class="text-[13px] font-bold font-ui mb-1">Linear Search</h3>
-            <p class="text-[11px] text-[#6B7280] font-body leading-[1.6] mb-3">
-              Check each item one by one from the beginning until you find what you're looking for or reach the end.
-            </p>
-
-            <a href="/pages/linear-search.html" class="text-[12px] font-bold font-ui text-[#DC2626] hover:underline">Explore →</a>
-          </div>
-
-          <!-- Binary Search -->
-          <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-center justify-between mb-4">
-              <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Binary Search</span>
-              <span class="text-[11px] font-code text-[#9CA3AF]">O(log n)</span>
-            </div>
-
-            <!-- Static preview -->
-            <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5">
-              <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">2</div>
-              <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">5</div>
-              <div class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-white bg-[#DC2626]">9</div>
-              <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">14</div>
-              <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">21</div>
-            </div>
-
-            <h3 class="text-[13px] font-bold font-ui mb-1">Binary Search</h3>
-            <p class="text-[11px] text-[#6B7280] font-body leading-[1.6] mb-3">
-              Only works on sorted data. Cuts the search space in half each time, much faster than checking every item.
-            </p>
-
-            <a href="/pages/binary-search.html" class="text-[12px] font-bold font-ui text-[#DC2626] hover:underline">Explore →</a>
-          </div>
-
-          <!-- Bubble Sort -->
-          <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-center justify-between mb-4">
-              <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Bubble Sort</span>
-              <span class="text-[11px] font-code text-[#9CA3AF]">O(n²)</span>
-            </div>
-
-            <!-- Static preview: showing two elements being swapped -->
-            <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4">
-              <div class="flex items-center gap-1.5 mb-1.5">
-                <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">3</div>
-                <div class="w-9 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center text-[12px] font-code text-white bg-[#D97706]">8</div>
-                <div class="w-9 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center text-[12px] font-code text-[#D97706] bg-[#FFFBEB]">5</div>
-                <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">9</div>
-                <span class="text-[10px] font-ui text-[#D97706] font-bold ml-1">swap →</span>
+            <!-- Right: Did You Know card -->
+            <div
+              id="did-you-know"
+              class="bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-4"
+            >
+              <div class="flex items-center gap-1.5 mb-2">
+                <i data-lucide="lightbulb" class="w-4 h-4 text-amber-500"></i>
+                <span
+                  class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui"
+                  >Did You Know?</span
+                >
               </div>
-              <div class="flex items-center gap-1.5">
-                <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">3</div>
-                <div class="w-9 h-9 border-2 border-[#10B981] rounded-lg flex items-center justify-center text-[12px] font-code text-[#059669] bg-[#F0FDF4]">5</div>
-                <div class="w-9 h-9 border-2 border-[#10B981] rounded-lg flex items-center justify-center text-[12px] font-code text-[#059669] bg-[#F0FDF4]">8</div>
-                <div class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]">9</div>
+              <p
+                id="dyk-text"
+                class="text-[11px] text-[#134E4A] leading-[1.65] mb-2 font-body"
+              >
+                Donald Knuth first formally defined algorithms in his 1968 book
+                <strong class="text-[#111827]"
+                  >"The Art of Computer Programming",</strong
+                >
+                which is still a gold standard reference today.
+              </p>
+              <div class="h-[2px] bg-[#99F6E4] rounded overflow-hidden mb-2">
+                <div
+                  id="dyk-bar"
+                  class="h-full bg-[#0D9488]"
+                  style="width: 0%"
+                ></div>
               </div>
+              <div id="dyk-dots" class="flex gap-1.5"></div>
             </div>
-
-            <h3 class="text-[13px] font-bold font-ui mb-1">Bubble Sort</h3>
-            <p class="text-[11px] text-[#6B7280] font-body leading-[1.6] mb-3">
-              Repeatedly compares adjacent items and swaps them if they are in the wrong order until the list is fully sorted.
-            </p>
-
-            <a href="/pages/bubble-sort.html" class="text-[12px] font-bold font-ui text-[#DC2626] hover:underline">Explore →</a>
           </div>
+        </section>
 
-        </div>
-      </div>
-    </section>
-
-
-    <!-- PRACTICE AND TRAINING SECTION -->
-    <section class="pt-8 pb-6 px-8 -mx-9 mb-10 bg-[#F5F5F5]">
-      <div class="mb-10">
-
+        <!-- THE BASICS -->
         <div class="mb-4">
-          <span class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-2">
-            Practice & Training
+          <span
+            class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3"
+          >
+            The Basics
           </span>
-          <h2 class="font-display font-bold text-[22px]">Test your understanding</h2>
-          <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mt-2 mb-5">
-            Three types of practice, from quick concept checks to real past
-            examination questions asked.
+          <h2 class="font-display font-bold text-[24px] mb-2">
+            What exactly is DSA?
+          </h2>
+          <p
+            class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mb-5"
+          >
+            No jargon, no confusion. Just a clear explanation, even if this is
+            the first time you're hearing about it. Every app you use is built
+            on these two ideas working together.
           </p>
         </div>
 
-        <div class="grid grid-cols-3 gap-5">
+        <!-- DSA INTRO STRIP -->
+        <div class="grid grid-cols-3 gap-4 mb-14">
+          <!-- Card 1: Data Structure -->
+          <div
+            class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-[#F0FDFA] flex items-center justify-center mb-3"
+            >
+              <i data-lucide="database" class="w-5 h-5 text-teal-700"></i>
+            </div>
+            <h4 class="text-[13px] font-bold font-ui mb-2">Data Structure</h4>
+            <p class="text-[12px] text-[#6B7280] leading-[1.65] font-body">
+              Think of it like how you arrange things in your room. A data
+              structure is simply a way of
+              <strong class="text-[#111827] font-semibold"
+                >organizing information</strong
+              >
+              so a computer can find and use it quickly.
+            </p>
+            <div class="mt-3 pt-3 border-t border-[#F3F4F6]">
+              <p
+                class="text-[10px] text-[#9CA3AF] italic leading-[1.6] font-body"
+              >
+                <span class="font-semibold not-italic text-[#6B7280]"
+                  >Formal definition:</span
+                >
+                A data structure is a specialized format for organizing,
+                processing, retrieving, and storing data, so it can be used
+                efficiently (Cormen et al., 2022).
+              </p>
+            </div>
+          </div>
 
-          <!-- True or False -->
-          <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col items-center text-center">
+          <!-- Card 2: Algorithm -->
+          <div
+            class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-[#F3F4F6] flex items-center justify-center mb-3"
+            >
+              <i data-lucide="workflow" class="w-5 h-5 text-gray-700"></i>
+            </div>
+            <h4 class="text-[13px] font-bold font-ui mb-2">Algorithm</h4>
+            <p class="text-[12px] text-[#6B7280] leading-[1.65] font-body">
+              An algorithm is a
+              <strong class="text-[#111827] font-semibold"
+                >step-by-step method</strong
+              >
+              for solving a problem — like a recipe. When you arrange market
+              goods so customers find items fast, you're thinking
+              algorithmically.
+            </p>
+            <div class="mt-3 pt-3 border-t border-[#F3F4F6]">
+              <p
+                class="text-[10px] text-[#9CA3AF] italic leading-[1.6] font-body"
+              >
+                <span class="font-semibold not-italic text-[#6B7280]"
+                  >Formal definition:</span
+                >
+                An algorithm is a finite, well-defined, step-by-step procedure
+                for solving a computational problem.
+              </p>
+            </div>
+          </div>
 
-            <!-- Ring with question count -->
-            <div class="w-16 h-16 rounded-full bg-[#EFF6FF] border-4 border-[#3B82F6] flex items-center justify-center mb-3">
-              <span class="text-[20px] font-bold font-ui text-[#3B82F6]">15</span>
+          <!-- Card 3: Why it matters -->
+          <div
+            class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-[#F0FDF4] flex items-center justify-center mb-3"
+            >
+              <i data-lucide="globe" class="w-5 h-5 text-emerald-600"></i>
+            </div>
+            <h4 class="text-[13px] font-bold font-ui mb-2">Why it matters</h4>
+            <p class="text-[12px] text-[#6B7280] leading-[1.65] font-body">
+              Every app you use: OPay, WhatsApp, Google, runs on data structures
+              and algorithms underneath. Learning DSA means understanding
+              <strong class="text-[#111827] font-semibold"
+                >how software really works</strong
+              >.
+            </p>
+          </div>
+        </div>
+
+        <!-- PROGRAMMING LANGUAGES STRIP -->
+        <div class="mb-10">
+          <div class="mb-4">
+            <span
+              class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-2"
+            >
+              Language Independent
+            </span>
+            <h2 class="font-display font-bold text-[22px]">
+              DSA works in every language
+            </h2>
+            <p
+              class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mt-2 mb-5"
+            >
+              Data structures and algorithms are not tied to any programming
+              language. A stack behaves the same way whether you write it in
+              Python, C, Java, or JavaScript — only the syntax changes. This is
+              what makes DSA the true foundation of software development.
+            </p>
+          </div>
+
+          <!-- Language tags strip -->
+          <div class="flex flex-wrap gap-3 mb-6">
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <span class="text-[16px]">🐍</span>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >Python</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <i data-lucide="coffee" class="w-4 h-4 text-amber-600"></i>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >Java</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <i data-lucide="cpu" class="w-4 h-4 text-indigo-600"></i>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >C / C++</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <i data-lucide="file-code" class="w-4 h-4 text-yellow-600"></i>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >JavaScript</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <i data-lucide="gem" class="w-4 h-4 text-red-500"></i>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >Ruby</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <i data-lucide="shield" class="w-4 h-4 text-orange-600"></i>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >Rust</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-white border border-[#E5E7EB] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <i data-lucide="server" class="w-4 h-4 text-purple-600"></i>
+              <span class="text-[12px] font-bold font-ui text-[#111827]"
+                >PHP</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-2 bg-[#F0FDFA] border border-[#CCFBF1] rounded-lg px-4 py-2.5 shadow-sm"
+            >
+              <span class="text-[12px] font-bold font-ui text-[#0D9488]"
+                >+ many more</span
+              >
+            </div>
+          </div>
+
+          <!-- Same concept, different syntax three column comparison -->
+          <div class="bg-[#111827] rounded-xl p-5">
+            <p
+              class="text-[11px] font-bold font-ui text-[#9CA3AF] tracking-wider uppercase mb-4"
+            >
+              Same concept. Stack Push operation across three languages
+            </p>
+            <div class="grid grid-cols-3 gap-4">
+              <!-- Python -->
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-[13px]">🐍</span>
+                  <span class="text-[11px] font-bold font-ui text-[#9CA3AF]"
+                    >Python</span
+                  >
+                </div>
+                <div class="bg-[#1E293B] rounded-lg p-3">
+                  <p class="font-code text-[11px] leading-[1.8]">
+                    <span class="text-[#94A3B8]">stack = []</span><br />
+                    <span class="text-[#0D9488]">stack</span
+                    ><span class="text-[#94A3B8]">.</span
+                    ><span class="text-[#38BDF8]">append</span
+                    ><span class="text-[#94A3B8]">(</span
+                    ><span class="text-[#FB923C]">10</span
+                    ><span class="text-[#94A3B8]">)</span><br />
+                    <span class="text-[#0D9488]">stack</span
+                    ><span class="text-[#94A3B8]">.</span
+                    ><span class="text-[#38BDF8]">append</span
+                    ><span class="text-[#94A3B8]">(</span
+                    ><span class="text-[#FB923C]">20</span
+                    ><span class="text-[#94A3B8]">)</span><br />
+                    <span class="text-[#64748B]"># stack = [10, 20]</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Java -->
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <i data-lucide="coffee" class="w-4 h-4 text-amber-600"></i>
+                  <span class="text-[11px] font-bold font-ui text-[#9CA3AF]"
+                    >Java</span
+                  >
+                </div>
+                <div class="bg-[#1E293B] rounded-lg p-3">
+                  <p class="font-code text-[11px] leading-[1.8]">
+                    <span class="text-[#38BDF8]">Stack</span
+                    ><span class="text-[#94A3B8]">&lt;</span
+                    ><span class="text-[#38BDF8]">Integer</span
+                    ><span class="text-[#94A3B8]">&gt;</span><br />
+                    <span class="text-[#0D9488]">s</span>
+                    <span class="text-[#94A3B8]">= new</span>
+                    <span class="text-[#38BDF8]">Stack</span
+                    ><span class="text-[#94A3B8]">();</span><br />
+                    <span class="text-[#0D9488]">s</span
+                    ><span class="text-[#94A3B8]">.</span
+                    ><span class="text-[#38BDF8]">push</span
+                    ><span class="text-[#94A3B8]">(</span
+                    ><span class="text-[#FB923C]">10</span
+                    ><span class="text-[#94A3B8]">);</span><br />
+                    <span class="text-[#0D9488]">s</span
+                    ><span class="text-[#94A3B8]">.</span
+                    ><span class="text-[#38BDF8]">push</span
+                    ><span class="text-[#94A3B8]">(</span
+                    ><span class="text-[#FB923C]">20</span
+                    ><span class="text-[#94A3B8]">);</span>
+                  </p>
+                </div>
+              </div>
+
+              <!-- JavaScript -->
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <i
+                    data-lucide="file-code"
+                    class="w-4 h-4 text-yellow-600"
+                  ></i>
+                  <span class="text-[11px] font-bold font-ui text-[#9CA3AF]"
+                    >JavaScript</span
+                  >
+                </div>
+                <div class="bg-[#1E293B] rounded-lg p-3">
+                  <p class="font-code text-[11px] leading-[1.8]">
+                    <span class="text-[#94A3B8]">const</span>
+                    <span class="text-[#0D9488]">stack</span>
+                    <span class="text-[#94A3B8]">= [];</span><br />
+                    <span class="text-[#0D9488]">stack</span
+                    ><span class="text-[#94A3B8]">.</span
+                    ><span class="text-[#38BDF8]">push</span
+                    ><span class="text-[#94A3B8]">(</span
+                    ><span class="text-[#FB923C]">10</span
+                    ><span class="text-[#94A3B8]">);</span><br />
+                    <span class="text-[#0D9488]">stack</span
+                    ><span class="text-[#94A3B8]">.</span
+                    ><span class="text-[#38BDF8]">push</span
+                    ><span class="text-[#94A3B8]">(</span
+                    ><span class="text-[#FB923C]">20</span
+                    ><span class="text-[#94A3B8]">);</span><br />
+                    <span class="text-[#64748B]">// stack = [10, 20]</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <p class="text-[10px] text-[#475569] font-body mt-4 text-center">
+              The concept is identical across all three; push adds to the top.
+              Only the syntax differs.
+            </p>
+          </div>
+        </div>
+
+        <!-- DATA STRUCTURES SECTION -->
+        <section class="pt-8 pb-6 px-8 -mx-9 mb-10 bg-[#F5F5F5]">
+          <div class="mb-4">
+            <div class="flex items-baseline justify-between mb-4">
+              <div>
+                <span
+                  class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3"
+                >
+                  Data Structures
+                </span>
+                <h2 class="font-display font-bold text-[24px] mb-2">
+                  Choose a structure to explore
+                </h2>
+                <p
+                  class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mb-5"
+                >
+                  A new way to learn. Each structure has a static preview, a
+                  short description, and a list of operations you can perform on
+                  it. Click <b>"Explore"</b> to see the structure in action.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-5">
+            <!-- ARRAY CARD -->
+            <div
+              class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="bg-[#EFF6FF] text-[#3B82F6] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                  >Arrays</span
+                >
+                <span class="text-[11px] text-[#9CA3AF] font-body"
+                  >4 operations</span
+                >
+              </div>
+
+              <!-- Static preview: array boxes -->
+              <div
+                class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5"
+              >
+                <div
+                  class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]"
+                >
+                  5
+                </div>
+                <div
+                  class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-white bg-[#3B82F6]"
+                >
+                  12
+                </div>
+                <div
+                  class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]"
+                >
+                  8
+                </div>
+                <div
+                  class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]"
+                >
+                  3
+                </div>
+                <div
+                  class="w-10 h-10 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center text-[13px] font-code text-[#3B82F6]"
+                >
+                  19
+                </div>
+              </div>
+
+              <h3 class="text-[14px] font-bold font-ui mb-1">Array</h3>
+              <p
+                class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3"
+              >
+                A collection of items stored in a continuous block of memory.
+                Like seats on a BRT bus numbered in order, easy to access by
+                position.
+              </p>
+
+              <!-- Operations -->
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Access</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Insert</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Delete</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Search</span
+                >
+              </div>
+
+              <a
+                href="pages/arrays.html"
+                class="text-[12px] font-bold font-ui text-[#3B82F6] hover:underline"
+                >Explore Array →</a
+              >
             </div>
 
-            <span class="inline-block bg-[#DBEAFE] text-[#1D4ED8] text-[10px] font-bold font-ui px-3 py-1 rounded-full mb-3">
-              True or False
-            </span>
+            <!-- LINKED LIST CARD -->
+            <div
+              class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                  >Linked Lists</span
+                >
+                <span class="text-[11px] text-[#9CA3AF] font-body"
+                  >4 operations</span
+                >
+              </div>
 
-            <h3 class="text-[13px] font-bold font-ui mb-2">Quick Checks</h3>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-5">
-              Test your basic understanding of each data structure concept.
-              Great for fast revision before lectures or exams.
-            </p>
+              <!-- Static preview: linked list nodes -->
+              <div
+                class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1"
+              >
+                <div
+                  class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[13px] font-code text-[#7C3AED]"
+                >
+                  A
+                </div>
+                <span class="text-[#7C3AED] font-bold text-[14px]">→</span>
+                <div
+                  class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[13px] font-code text-[#7C3AED]"
+                >
+                  B
+                </div>
+                <span class="text-[#7C3AED] font-bold text-[14px]">→</span>
+                <div
+                  class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[13px] font-code text-[#7C3AED]"
+                >
+                  C
+                </div>
+                <span class="text-[#7C3AED] font-bold text-[14px]">→</span>
+                <span class="text-[12px] font-code text-[#9CA3AF]">NULL</span>
+              </div>
 
-            <a href="pages/practice.html#true-false" class="mt-auto w-full inline-block text-center px-4 py-2.5 bg-[#3B82F6] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#2563EB] transition-colors duration-200">
-              Start Quiz
-            </a>
-          </div>
+              <h3 class="text-[14px] font-bold font-ui mb-1">
+                Singly Linked List
+              </h3>
+              <p
+                class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3"
+              >
+                Each item points to the next like passengers in a danfo bus.
+                Each person knows who is sitting in front of them, but not
+                behind.
+              </p>
 
-          <!-- Multiple Choice -->
-          <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col items-center text-center">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Insert Head</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Insert Tail</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Delete</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Traverse</span
+                >
+              </div>
 
-            <!-- Ring with question count -->
-            <div class="w-16 h-16 rounded-full bg-[#F0FDF4] border-4 border-[#059669] flex items-center justify-center mb-3">
-              <span class="text-[20px] font-bold font-ui text-[#059669]">20</span>
+              <a
+                href="pages/linked-list.html"
+                class="text-[12px] font-bold font-ui text-[#7C3AED] hover:underline"
+                >Explore Linked List →</a
+              >
             </div>
 
-            <span class="inline-block bg-[#DCFCE7] text-[#166534] text-[10px] font-bold font-ui px-3 py-1 rounded-full mb-3">
-              Multiple Choice
-            </span>
+            <!-- STACK CARD -->
+            <div
+              class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="bg-[#ECFDF5] text-[#059669] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                  >Stacks</span
+                >
+                <span class="text-[11px] text-[#9CA3AF] font-body"
+                  >3 operations</span
+                >
+              </div>
 
-            <h3 class="text-[13px] font-bold font-ui mb-2">Exam Style</h3>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-5">
-              Four options, one correct answer. Questions are styled after the CSC DSA
-              departmental exam format at the University of Jos.
-            </p>
+              <!-- Static preview: stack plates -->
+              <div
+                class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex flex-col gap-1.5"
+              >
+                <div
+                  class="w-full h-9 bg-[#059669] rounded-lg flex items-center justify-between px-3"
+                >
+                  <span class="text-[12px] font-code text-white">Egusi</span>
+                  <span
+                    class="text-[10px] font-bold font-ui text-white opacity-80"
+                    >← TOP</span
+                  >
+                </div>
+                <div
+                  class="w-full h-9 border-2 border-[#059669] rounded-lg flex items-center px-3"
+                >
+                  <span class="text-[12px] font-code text-[#059669]"
+                    >Jollof</span
+                  >
+                </div>
+                <div
+                  class="w-full h-9 border-2 border-[#059669] rounded-lg flex items-center px-3"
+                >
+                  <span class="text-[12px] font-code text-[#059669]">Rice</span>
+                </div>
+              </div>
 
-            <a href="pages/practice.html#mcq" class="mt-auto w-full inline-block text-center px-4 py-2.5 bg-[#059669] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#047857] transition-colors duration-200">
-              Start Quiz
-            </a>
-          </div>
+              <h3 class="text-[14px] font-bold font-ui mb-1">Stack</h3>
+              <p
+                class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3"
+              >
+                Last in, first out like a pile of plates in a bukateria. The
+                last plate placed on top is always the first one taken.
+              </p>
 
-          <!-- Past Exam Questions -->
-          <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col items-center text-center">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Push</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Pop</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Peek</span
+                >
+              </div>
 
-            <!-- Ring with document icon instead of number -->
-            <div class="w-16 h-16 rounded-full bg-[#F0FDFA] border-4 border-[#0D9488] flex items-center justify-center mb-3">
-              <span class="text-[24px]">📄</span>
+              <a
+                href="pages/stack.html"
+                class="text-[12px] font-bold font-ui text-[#059669] hover:underline"
+                >Explore Stack →</a
+              >
             </div>
 
-            <span class="inline-block bg-[#CCFBF1] text-[#0F766E] text-[10px] font-bold font-ui px-3 py-1 rounded-full mb-3">
-              Past Questions
-            </span>
+            <!-- QUEUE CARD -->
+            <div
+              class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <span
+                  class="bg-[#FFFBEB] text-[#D97706] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                  >Queues</span
+                >
+                <span class="text-[11px] text-[#9CA3AF] font-body"
+                  >3 operations</span
+                >
+              </div>
 
-            <h3 class="text-[13px] font-bold font-ui mb-2">Essay Practice</h3>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-5">
-              Real past exam questions organized by year. Read the question,
-              write your answer on paper. Model answers available after each.
-            </p>
+              <!-- Static preview: queue with FRONT and REAR -->
+              <div
+                class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5"
+              >
+                <span
+                  class="text-[10px] font-bold font-ui text-[#D97706] shrink-0"
+                  >FRONT→</span
+                >
+                <div
+                  class="flex-1 h-9 bg-[#D97706] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-[12px] font-code text-white">Ama</span>
+                </div>
+                <div
+                  class="flex-1 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-[12px] font-code text-[#D97706]"
+                    >Tunde</span
+                  >
+                </div>
+                <div
+                  class="flex-1 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center"
+                >
+                  <span class="text-[12px] font-code text-[#D97706]">Kemi</span>
+                </div>
+                <span
+                  class="text-[10px] font-bold font-ui text-[#D97706] shrink-0"
+                  >←REAR</span
+                >
+              </div>
 
-            <a href="pages/practice.html#past-questions" class="mt-auto w-full inline-block text-center px-4 py-2.5 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#B45309] transition-colors duration-200">
-              View Questions
-            </a>
+              <h3 class="text-[14px] font-bold font-ui mb-1">Queue</h3>
+              <p
+                class="text-[12px] text-[#6B7280] font-body leading-[1.6] mb-3"
+              >
+                First in, first out like an ATM queue in Nigeria. Whoever
+                arrived first gets served first. Fair and orderly.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Enqueue</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Dequeue</span
+                >
+                <span
+                  class="px-2.5 py-1 border border-[#E5E7EB] rounded-md text-[11px] text-[#6B7280] font-body"
+                  >Peek</span
+                >
+              </div>
+
+              <a
+                href="pages/queue.html"
+                class="text-[12px] font-bold font-ui text-[#D97706] hover:underline"
+                >Explore Queue →</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- ALGORITHMS SECTION -->
+        <section>
+          <div class="mb-10">
+            <div class="flex items-baseline justify-between mb-4">
+              <div>
+                <span
+                  class="inline-block bg-[#FEF2F2] text-[#DC2626] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-2"
+                >
+                  Algorithms
+                </span>
+                <h2 class="font-display font-bold text-[22px]">
+                  How do we process data?
+                </h2>
+                <p
+                  class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mt-2 mb-5"
+                >
+                  An algorithm is a step-by-step procedure applied to data to
+                  produce a result. The three algorithms below are among the
+                  first every computing student encounters and understanding
+                  them builds the foundation for everything more advanced.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-5">
+              <!-- Linear Search -->
+              <div
+                class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                    >Linear Search</span
+                  >
+                  <span class="text-[11px] font-code text-[#9CA3AF]">O(n)</span>
+                </div>
+
+                <!-- Static preview -->
+                <div
+                  class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5"
+                >
+                  <div
+                    class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-[#DC2626] bg-[#FEF2F2]"
+                  >
+                    3
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-[#DC2626] bg-[#FEF2F2]"
+                  >
+                    7
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-white bg-[#DC2626]"
+                  >
+                    12
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                  >
+                    19
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                  >
+                    25
+                  </div>
+                </div>
+
+                <h3 class="text-[13px] font-bold font-ui mb-1">
+                  Linear Search
+                </h3>
+                <p
+                  class="text-[11px] text-[#6B7280] font-body leading-[1.6] mb-3"
+                >
+                  Check each item one by one from the beginning until you find
+                  what you're looking for or reach the end.
+                </p>
+
+                <a
+                  href="pages/linear-search.html"
+                  class="text-[12px] font-bold font-ui text-[#DC2626] hover:underline"
+                  >Explore →</a
+                >
+              </div>
+
+              <!-- Binary Search -->
+              <div
+                class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                    >Binary Search</span
+                  >
+                  <span class="text-[11px] font-code text-[#9CA3AF]"
+                    >O(log n)</span
+                  >
+                </div>
+
+                <!-- Static preview -->
+                <div
+                  class="bg-[#F8FAFC] rounded-lg p-3 mb-4 flex items-center gap-1.5"
+                >
+                  <div
+                    class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                  >
+                    2
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                  >
+                    5
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[12px] font-code text-white bg-[#DC2626]"
+                  >
+                    9
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                  >
+                    14
+                  </div>
+                  <div
+                    class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                  >
+                    21
+                  </div>
+                </div>
+
+                <h3 class="text-[13px] font-bold font-ui mb-1">
+                  Binary Search
+                </h3>
+                <p
+                  class="text-[11px] text-[#6B7280] font-body leading-[1.6] mb-3"
+                >
+                  Only works on sorted data. Cuts the search space in half each
+                  time, much faster than checking every item.
+                </p>
+
+                <a
+                  href="pages/binary-search.html"
+                  class="text-[12px] font-bold font-ui text-[#DC2626] hover:underline"
+                  >Explore →</a
+                >
+              </div>
+
+              <!-- Bubble Sort -->
+              <div
+                class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <span
+                    class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+                    >Bubble Sort</span
+                  >
+                  <span class="text-[11px] font-code text-[#9CA3AF]"
+                    >O(n²)</span
+                  >
+                </div>
+
+                <!-- Static preview: showing two elements being swapped -->
+                <div class="bg-[#F8FAFC] rounded-lg p-3 mb-4">
+                  <div class="flex items-center gap-1.5 mb-1.5">
+                    <div
+                      class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                    >
+                      3
+                    </div>
+                    <div
+                      class="w-9 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center text-[12px] font-code text-white bg-[#D97706]"
+                    >
+                      8
+                    </div>
+                    <div
+                      class="w-9 h-9 border-2 border-[#D97706] rounded-lg flex items-center justify-center text-[12px] font-code text-[#D97706] bg-[#FFFBEB]"
+                    >
+                      5
+                    </div>
+                    <div
+                      class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                    >
+                      9
+                    </div>
+                    <span
+                      class="text-[10px] font-ui text-[#D97706] font-bold ml-1"
+                      >swap →</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <div
+                      class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                    >
+                      3
+                    </div>
+                    <div
+                      class="w-9 h-9 border-2 border-[#10B981] rounded-lg flex items-center justify-center text-[12px] font-code text-[#059669] bg-[#F0FDF4]"
+                    >
+                      5
+                    </div>
+                    <div
+                      class="w-9 h-9 border-2 border-[#10B981] rounded-lg flex items-center justify-center text-[12px] font-code text-[#059669] bg-[#F0FDF4]"
+                    >
+                      8
+                    </div>
+                    <div
+                      class="w-9 h-9 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[12px] font-code text-[#9CA3AF]"
+                    >
+                      9
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="text-[13px] font-bold font-ui mb-1">Bubble Sort</h3>
+                <p
+                  class="text-[11px] text-[#6B7280] font-body leading-[1.6] mb-3"
+                >
+                  Repeatedly compares adjacent items and swaps them if they are
+                  in the wrong order until the list is fully sorted.
+                </p>
+
+                <a
+                  href="pages/bubble-sort.html"
+                  class="text-[12px] font-bold font-ui text-[#DC2626] hover:underline"
+                  >Explore →</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PRACTICE AND TRAINING SECTION -->
+        <section class="pt-8 pb-6 px-8 -mx-9 mb-10 bg-[#F5F5F5]">
+          <div class="mb-10">
+            <div class="mb-4">
+              <span
+                class="inline-block bg-[#F0FDFA] text-[#0D9488] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-2"
+              >
+                Practice & Training
+              </span>
+              <h2 class="font-display font-bold text-[22px]">
+                Test your understanding
+              </h2>
+              <p
+                class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[560px] mt-2 mb-5"
+              >
+                Three types of practice, from quick concept checks to real past
+                examination questions asked.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-5">
+              <!-- True or False -->
+              <div
+                class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col items-center text-center"
+              >
+                <!-- Ring with question count -->
+                <div
+                  class="w-16 h-16 rounded-full bg-[#EFF6FF] border-4 border-[#3B82F6] flex items-center justify-center mb-3"
+                >
+                  <span class="text-[20px] font-bold font-ui text-[#3B82F6]"
+                    >15</span
+                  >
+                </div>
+
+                <span
+                  class="inline-block bg-[#DBEAFE] text-[#1D4ED8] text-[10px] font-bold font-ui px-3 py-1 rounded-full mb-3"
+                >
+                  True or False
+                </span>
+
+                <h3 class="text-[13px] font-bold font-ui mb-2">Quick Checks</h3>
+                <p
+                  class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-5"
+                >
+                  Test your basic understanding of each data structure concept.
+                  Great for fast revision before lectures or exams.
+                </p>
+
+                <a
+                  href="pages/practice.html#true-false"
+                  class="mt-auto w-full inline-block text-center px-4 py-2.5 bg-[#3B82F6] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#2563EB] transition-colors duration-200"
+                >
+                  Start Quiz
+                </a>
+              </div>
+
+              <!-- Multiple Choice -->
+              <div
+                class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col items-center text-center"
+              >
+                <!-- Ring with question count -->
+                <div
+                  class="w-16 h-16 rounded-full bg-[#F0FDF4] border-4 border-[#059669] flex items-center justify-center mb-3"
+                >
+                  <span class="text-[20px] font-bold font-ui text-[#059669]"
+                    >20</span
+                  >
+                </div>
+
+                <span
+                  class="inline-block bg-[#DCFCE7] text-[#166534] text-[10px] font-bold font-ui px-3 py-1 rounded-full mb-3"
+                >
+                  Multiple Choice
+                </span>
+
+                <h3 class="text-[13px] font-bold font-ui mb-2">Exam Style</h3>
+                <p
+                  class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-5"
+                >
+                  Four options, one correct answer. Questions are styled after
+                  the CSC DSA departmental exam format at the University of Jos.
+                </p>
+
+                <a
+                  href="pages/practice.html#mcq"
+                  class="mt-auto w-full inline-block text-center px-4 py-2.5 bg-[#059669] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#047857] transition-colors duration-200"
+                >
+                  Start Quiz
+                </a>
+              </div>
+
+              <!-- Past Exam Questions -->
+              <div
+                class="bg-white border border-[#E5E7EB] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col items-center text-center"
+              >
+                <!-- Ring with document icon instead of number -->
+                <div
+                  class="w-16 h-16 rounded-full bg-[#F0FDFA] border-4 border-[#0D9488] flex items-center justify-center mb-3"
+                >
+                  <span class="text-[24px]">📄</span>
+                </div>
+
+                <span
+                  class="inline-block bg-[#CCFBF1] text-[#0F766E] text-[10px] font-bold font-ui px-3 py-1 rounded-full mb-3"
+                >
+                  Past Questions
+                </span>
+
+                <h3 class="text-[13px] font-bold font-ui mb-2">
+                  Essay Practice
+                </h3>
+                <p
+                  class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-5"
+                >
+                  Real past exam questions organized by year. Read the question,
+                  write your answer on paper. Model answers available after
+                  each.
+                </p>
+
+                <a
+                  href="pages/practice.html#past-questions"
+                  class="mt-auto w-full inline-block text-center px-4 py-2.5 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#B45309] transition-colors duration-200"
+                >
+                  View Questions
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-[#E5E7EB] mt-10 pt-8 pb-6">
+          <div class="grid grid-cols-3 gap-8 mb-8">
+            <!-- About the project -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 28 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="2"
+                    y="16"
+                    width="6"
+                    height="10"
+                    rx="1.5"
+                    fill="#0D9488"
+                  />
+                  <rect
+                    x="11"
+                    y="6"
+                    width="6"
+                    height="20"
+                    rx="1.5"
+                    fill="#0D9488"
+                  />
+                  <rect
+                    x="20"
+                    y="11"
+                    width="6"
+                    height="15"
+                    rx="1.5"
+                    fill="#0D9488"
+                  />
+                </svg>
+                <span class="font-ui font-bold text-[14px]"
+                  >EduViz <span class="text-[#0D9488]">DSA</span></span
+                >
+              </div>
+              <p class="text-[11px] text-[#6B7280] font-body leading-[1.7]">
+                An interactive DSA visualization platform built specifically for
+                Nigerian computer science students, with localized examples and
+                Pidgin explanations.
+              </p>
+            </div>
+
+            <!-- Quick links -->
+            <div>
+              <h4
+                class="text-[11px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase mb-3"
+              >
+                Quick Links
+              </h4>
+              <div class="flex flex-col gap-2">
+                <a
+                  href="pages/concepts.html"
+                  class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]"
+                  >DSA Concepts</a
+                >
+                <a
+                  href="pages/arrays.html"
+                  class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]"
+                  >Data Structures</a
+                >
+                <a
+                  href="pages/linear-search.html"
+                  class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]"
+                  >Algorithms</a
+                >
+                <a
+                  href="pages/"
+                  class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]"
+                  >Practice Questions</a
+                >
+                <a
+                  href="pages/"
+                  class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]"
+                  >About Project</a
+                >
+              </div>
+            </div>
+
+            <!-- Project info -->
+            <div>
+              <h4
+                class="text-[11px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase mb-3"
+              >
+                Project Info
+              </h4>
+              <div class="flex flex-col gap-2">
+                <p class="text-[12px] text-[#6B7280] font-body">
+                  <span class="font-semibold text-[#111827]">Institution:</span>
+                  UNIVERSITY OF JOS
+                </p>
+                <p class="text-[12px] text-[#6B7280] font-body">
+                  <span class="font-semibold text-[#111827]">Course:</span> CSC
+                  414: Year Project
+                </p>
+                <p class="text-[12px] text-[#6B7280] font-body">
+                  <span class="font-semibold text-[#111827]">Developer:</span>
+                  BARKO
+                </p>
+                <p class="text-[12px] text-[#6B7280] font-body">
+                  <span class="font-semibold text-[#111827]">Supervisor:</span>
+                  MR DAVID OGUCHE
+                </p>
+              </div>
+            </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-[#E5E7EB] mt-10 pt-8 pb-6">
-      <div class="grid grid-cols-3 gap-8 mb-8">
-
-        <!-- About the project -->
-        <div>
-          <div class="flex items-center gap-2 mb-3">
-            <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2"  y="16" width="6" height="10" rx="1.5" fill="#0D9488"/>
-              <rect x="11" y="6"  width="6" height="20" rx="1.5" fill="#0D9488"/>
-              <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488"/>
-            </svg>
-            <span class="font-ui font-bold text-[14px]">EduViz <span class="text-[#0D9488]">DSA</span></span>
+          <!-- Bottom bar -->
+          <div
+            class="border-t border-[#F3F4F6] pt-4 flex items-center justify-between"
+          >
+            <p class="text-[11px] text-[#6B7280]font-body">
+              © 2026 EduViz DSA · University of Jos, Faculty of Computing
+            </p>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-[#6B7280] font-body"
+                >Further reading:</span
+              >
+              <a
+                href="https://visualgo.net"
+                target="_blank"
+                class="text-[11px] text-[#0D9488] font-body hover:underline"
+                >VisuAlgo</a
+              >
+              <span class="text-[#E5E7EB]">·</span>
+              <a
+                href="https://www.geeksforgeeks.org/data-structures/"
+                target="_blank"
+                class="text-[11px] text-[#0D9488] font-body hover:underline"
+                >GeeksForGeeks</a
+              >
+            </div>
           </div>
-          <p class="text-[11px] text-[#6B7280] font-body leading-[1.7]">
-            An interactive DSA visualization platform built specifically
-            for Nigerian computer science students, with localized examples
-            and Pidgin explanations.
-          </p>
-        </div>
-
-        <!-- Quick links -->
-        <div>
-          <h4 class="text-[11px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase mb-3">Quick Links</h4>
-          <div class="flex flex-col gap-2">
-            <a href="/pages/concepts.html" class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]">DSA Concepts</a>
-            <a href="/pages/arrays.html" class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]">Data Structures</a>
-            <a href="/pages/linear-search.html" class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]">Algorithms</a>
-            <a href="/pages/" class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]">Practice Questions</a>
-            <a href="/pages/" class="text-[12px] text-[#6B7280] font-body hover:text-[#0D9488]">About Project</a>
-          </div>
-        </div>
-
-        <!-- Project info -->
-        <div>
-          <h4 class="text-[11px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase mb-3">Project Info</h4>
-          <div class="flex flex-col gap-2">
-            <p class="text-[12px] text-[#6B7280] font-body">
-              <span class="font-semibold text-[#111827]">Institution:</span> UNIVERSITY OF JOS
-            </p>
-            <p class="text-[12px] text-[#6B7280] font-body">
-              <span class="font-semibold text-[#111827]">Course:</span> CSC 414: Year Project
-            </p>
-            <p class="text-[12px] text-[#6B7280] font-body">
-              <span class="font-semibold text-[#111827]">Developer:</span> BARKO
-            </p>
-            <p class="text-[12px] text-[#6B7280] font-body">
-              <span class="font-semibold text-[#111827]">Supervisor:</span> MR DAVID OGUCHE
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="border-t border-[#F3F4F6] pt-4 flex items-center justify-between">
-        <p class="text-[11px] text-[#6B7280]font-body">
-          © 2026 EduViz DSA · University of Jos, Faculty of Computing
-        </p>
-        <div class="flex items-center gap-2">
-          <span class="text-[11px] text-[#6B7280] font-body">Further reading:</span>
-          <a href="https://visualgo.net" target="_blank" class="text-[11px] text-[#0D9488] font-body hover:underline">VisuAlgo</a>
-          <span class="text-[#E5E7EB]">·</span>
-          <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" class="text-[11px] text-[#0D9488] font-body hover:underline">GeeksForGeeks</a>
-        </div>
-      </div>
-
-    </footer>
-
-    </main>
-  
-  </div>
+        </footer>
+      </main>
+    </div>
 
     <script>
       lucide.createIcons();
@@ -823,5 +1503,5 @@
     <script src="/assets/js/shared/pidgin.js"></script>
     <script src="./assets/js/shared/didyouknow.js"></script>
     <script src="/assets/js/shared/onboarding.js"></script>
-</body>
+  </body>
 </html>

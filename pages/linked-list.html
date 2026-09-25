@@ -1,428 +1,722 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linked List | EduViz DSA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/main.css"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <base href="/DSA/">
-</head>
-<body class="bg-white text-[#111827] font-body">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linked List | EduViz DSA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <base href="/DSA/" />
+  </head>
+  <body class="bg-white text-[#111827] font-body">
+    <!-- ONBOARDING TOUR -->
+    <div
+      id="tour-overlay"
+      class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4"
+    >
+      <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
+        <div id="tour-icon" class="text-[32px] mb-3"></div>
+        <h3
+          id="tour-title"
+          class="font-display font-bold text-[18px] mb-2"
+        ></h3>
+        <p
+          id="tour-body"
+          class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"
+        ></p>
 
-  <!-- ONBOARDING TOUR -->
-  <div id="tour-overlay" class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4">
-    <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
-      <div id="tour-icon" class="text-[32px] mb-3"></div>
-      <h3 id="tour-title" class="font-display font-bold text-[18px] mb-2"></h3>
-      <p id="tour-body" class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"></p>
-
-      <div class="flex items-center justify-between">
-        <div id="tour-dots" class="flex gap-1.5"></div>
-        <div class="flex items-center gap-3">
-          <button id="tour-skip-btn" class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]">Skip</button>
-          <button id="tour-next-btn" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]">Next</button>
+        <div class="flex items-center justify-between">
+          <div id="tour-dots" class="flex gap-1.5"></div>
+          <div class="flex items-center gap-3">
+            <button
+              id="tour-skip-btn"
+              class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]"
+            >
+              Skip
+            </button>
+            <button
+              id="tour-next-btn"
+              class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- TOP NAVIGATION BAR -->
-  <header class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50">
+    <!-- TOP NAVIGATION BAR -->
+    <header
+      class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50"
+    >
+      <a href="../index.html" class="flex items-center gap-2 shrink-0">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style="display: block"
+        >
+          <rect x="2" y="16" width="6" height="10" rx="1.5" fill="#0D9488" />
+          <rect x="11" y="6" width="6" height="20" rx="1.5" fill="#0D9488" />
+          <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488" />
+        </svg>
+        <span class="font-ui font-bold text-[15px] leading-none"
+          >EduViz <span class="text-[#0D9488]">DSA</span></span
+        >
+      </a>
 
-    <a href="../index.html" class="flex items-center gap-2 shrink-0">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
-        <rect x="2"  y="16" width="6" height="10" rx="1.5" fill="#0D9488"/>
-        <rect x="11" y="6"  width="6" height="20" rx="1.5" fill="#0D9488"/>
-        <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488"/>
-      </svg>
-      <span class="font-ui font-bold text-[15px] leading-none">EduViz <span class="text-[#0D9488]">DSA</span></span>
-    </a>
-
-    <div class="flex-1 max-w-[380px]">
-      <input
-        type="search"
-        placeholder="Search a topic, operation, or question..."
-        class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
-      />
-    </div>
-
-    <div class="ml-auto flex items-center gap-3">
-      <div class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5">
-        <span class="text-[11px] font-semibold text-[#0D9488] font-ui">EN</span>
-        <button
-          id="pidgin-toggle"
-          class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
-          aria-pressed="false"
-          aria-label="Toggle Pidgin explanations">
-          <span class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"></span>
-        </button>
-        <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui">Pidgin</span>
+      <div class="flex-1 max-w-[380px]">
+        <input
+          type="search"
+          placeholder="Search a topic, operation, or question..."
+          class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
+        />
       </div>
 
-      <a href="array.html" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui">
-        Start Learning
-      </a>
-    </div>
+      <div class="ml-auto flex items-center gap-3">
+        <div
+          class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5"
+        >
+          <span class="text-[11px] font-semibold text-[#0D9488] font-ui"
+            >EN</span
+          >
+          <button
+            id="pidgin-toggle"
+            class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
+            aria-pressed="false"
+            aria-label="Toggle Pidgin explanations"
+          >
+            <span
+              class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"
+            ></span>
+          </button>
+          <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui"
+            >Pidgin</span
+          >
+        </div>
 
-  </header>
+        <a
+          href="array.html"
+          class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui"
+        >
+          Start Learning
+        </a>
+      </div>
+    </header>
 
-  <div class="flex">
+    <div class="flex">
+      <!-- LEFT SIDEBAR -->
+      <aside
+        class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto"
+      >
+        <!-- EXPLORE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1"
+        >
+          Explore
+        </p>
+        <a
+          href="/index.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]"
+        >
+          <i data-lucide="home" class="w-4 h-4"></i> Home</a
+        >
+        <a
+          href="pages/concepts.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a
+        >
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto">
+        <!-- DATA STRUCTURES -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Data Structures
+        </p>
+        <a
+          href="pages/arrays.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
+        </a>
+        <a
+          href="pages/linked-list.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked
+          List
+        </a>
+        <a
+          href="pages/stack.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
+        </a>
+        <a
+          href="pages/queue.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
+        </a>
 
-    <!-- EXPLORE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1">Explore</p>
-    <a href="/index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]">
-      <i data-lucide="home" class="w-4 h-4"></i> Home</a>
-    <a href="/pages/concepts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a>
+        <!-- ALGORITHMS -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Algorithms
+        </p>
+        <a
+          href="pages/linear-search.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear
+          Search
+        </a>
+        <a
+          href="pages/binary-search.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary
+          Search
+        </a>
+        <a
+          href="pages/bubble-sort.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble
+          Sort
+        </a>
 
-    <!-- DATA STRUCTURES -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Data Structures</p>
-    <a href="/pages/arrays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
-    </a>
-    <a href="/pages/linked-list.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked List
-    </a>
-    <a href="/pages/stack.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
-    </a>
-    <a href="/pages/queue.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
-    </a>
+        <!-- PRACTICE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Practice
+        </p>
+        <a
+          href="pages/practice.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a
+        >
+        <a
+          href="pages/practice.html#past-questions"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a
+        >
 
-    <!-- ALGORITHMS -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Algorithms</p>
-    <a href="/pages/linear-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear Search
-    </a>
-    <a href="/pages/binary-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary Search
-    </a>
-    <a href="/pages/bubble-sort.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble Sort
-    </a>
+        <!-- MORE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          More
+        </p>
+        <a
+          href="pages/about.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="info" class="w-4 h-4"></i> About Project</a
+        >
 
-    <!-- PRACTICE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Practice</p>
-    <a href="/pages/practice.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a>
-    <a href="/pages/practice.html#past-questions" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a>
+        <button
+          id="tour-help-btn"
+          type="button"
+          class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+        >
+          <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour
+        </button>
+      </aside>
 
-    <!-- MORE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">More</p>
-    <a href="/pages/about.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="info" class="w-4 h-4"></i> About Project</a>
-
-     <button id="tour-help-btn" type="button" class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]" 
-     style="font-family: 'Space Grotesk', sans-serif;"> <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour</button>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 px-9 pb-7">
-
-      <!-- HEADER + PREVIEW -->
-      <div class="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6 items-center mb-8 pt-6 max-w-[900px]">
-
-        <div>
-          <span class="inline-block bg-[#F5F3FF] text-[#7C3AED] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3">
-            Data Structures
-          </span>
-          <div class="flex items-center gap-3 mb-3">
-            <h1 class="font-display font-bold text-[32px]">Linked List</h1>
-            <span class="text-[12px] font-code font-bold text-[#7C3AED] bg-[#F5F3FF] px-3 py-1 rounded-md border border-[#DDD6FE]">Dynamic Size</span>
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 px-9 pb-7">
+        <!-- HEADER + PREVIEW -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6 items-center mb-8 pt-6 max-w-[900px]"
+        >
+          <div>
+            <span
+              class="inline-block bg-[#F5F3FF] text-[#7C3AED] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3"
+            >
+              Data Structures
+            </span>
+            <div class="flex items-center gap-3 mb-3">
+              <h1 class="font-display font-bold text-[32px]">Linked List</h1>
+              <span
+                class="text-[12px] font-code font-bold text-[#7C3AED] bg-[#F5F3FF] px-3 py-1 rounded-md border border-[#DDD6FE]"
+                >Dynamic Size</span
+              >
+            </div>
+            <p class="text-[13px] text-[#6B7280] leading-[1.75] font-body">
+              A linked list is a chain of nodes, where each node holds a value
+              and a
+              <strong class="text-[#111827]">pointer</strong> to the next node
+              in line. Unlike an array, its items aren't stored in one
+              continuous block of memory — they can live anywhere, connected
+              only by these pointers.
+            </p>
           </div>
-          <p class="text-[13px] text-[#6B7280] leading-[1.75] font-body">
-            A linked list is a chain of nodes, where each node holds a value and a
-            <strong class="text-[#111827]">pointer</strong> to the next node in line.
-            Unlike an array, its items aren't stored in one continuous block of memory —
-            they can live anywhere, connected only by these pointers.
+
+          <div class="bg-[#F8FAFC] rounded-lg p-5 flex items-center gap-1.5">
+            <div
+              class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[14px] font-code text-[#7C3AED]"
+            >
+              A
+            </div>
+            <span class="text-[#7C3AED] font-bold text-[15px]">→</span>
+            <div
+              class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[14px] font-code text-[#7C3AED]"
+            >
+              B
+            </div>
+            <span class="text-[#7C3AED] font-bold text-[15px]">→</span>
+            <div
+              class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[14px] font-code text-[#7C3AED]"
+            >
+              C
+            </div>
+            <span class="text-[#7C3AED] font-bold text-[15px]">→</span>
+            <span class="text-[13px] font-code text-[#9CA3AF]">NULL</span>
+          </div>
+        </div>
+
+        <div
+          id="did-you-know"
+          class="bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]"
+        >
+          <div class="flex items-center gap-1.5 mb-3">
+            <span
+              class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui"
+              >The Danfo Bus Analogy</span
+            >
+          </div>
+          <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
+            Think of a linked list like passengers sitting in a danfo bus, one
+            behind the other in a single row. Each passenger only knows who is
+            sitting directly in front of them — they have no idea who's behind.
+            If you want to find the fifth passenger, you can't just jump there;
+            you have to start from the first person and ask each one, "who's
+            next?" until you reach them. That's exactly how a linked list works:
+            each
+            <strong class="text-[#111827]">node</strong> only knows about the
+            <strong class="text-[#111827]">next</strong> node, so getting
+            anywhere means traversing from the start — there's no shortcut like
+            an array's instant index access. The upside is that adding or
+            removing a passenger anywhere in the row is easy — you just adjust
+            who's pointing to whom.
           </p>
         </div>
 
-        <div class="bg-[#F8FAFC] rounded-lg p-5 flex items-center gap-1.5">
-          <div class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[14px] font-code text-[#7C3AED]">A</div>
-          <span class="text-[#7C3AED] font-bold text-[15px]">→</span>
-          <div class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[14px] font-code text-[#7C3AED]">B</div>
-          <span class="text-[#7C3AED] font-bold text-[15px]">→</span>
-          <div class="border-2 border-[#7C3AED] rounded-lg px-3 py-2 text-[14px] font-code text-[#7C3AED]">C</div>
-          <span class="text-[#7C3AED] font-bold text-[15px]">→</span>
-          <span class="text-[13px] font-code text-[#9CA3AF]">NULL</span>
+        <div
+          class="pidgin-box bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]"
+        >
+          <div class="flex items-center gap-1.5 mb-3">
+            <span
+              class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui"
+              >For Pidgin Speakers</span
+            >
+          </div>
+          <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
+            Think am like passenger wey dey sidon for danfo bus, one behind
+            another for one row. Every passenger just know the person wey dey
+            sidon front of am — dem no know who dey behind. If you wan find the
+            fifth passenger, you no fit jump go meet am straight; you go start
+            from the first person, dey ask each one "who be next?" until you
+            reach the person. Na so linked list dey work: every
+            <strong class="text-[#111827]">node</strong> just know the
+            <strong class="text-[#111827]">next</strong> node, so to reach
+            anywhere you must waka from the beginning — no shortcut like how
+            array dey jump enter index sharp sharp. The advantage na say to add
+            or comot passenger anywhere for the row easy — you just adjust who
+            dey point to who.
+          </p>
         </div>
 
-      </div>
+        <div
+          class="bg-white border border-[#E5E7EB] rounded-xl p-6 mb-8 max-w-[900px]"
+        >
+          <div class="flex items-center justify-between mb-5">
+            <h2 class="font-display font-bold text-[18px]">Try it yourself</h2>
+            <span
+              id="step-counter"
+              class="text-[11px] font-code text-[#9CA3AF] bg-[#F8FAFC] px-3 py-1 rounded-md border border-[#E5E7EB]"
+              >Step 0</span
+            >
+          </div>
 
+          <!-- TABS -->
+          <div class="flex gap-2 mb-5 border-b border-[#E5E7EB]">
+            <button
+              id="tab-inserthead"
+              class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-[#7C3AED] text-[#7C3AED]"
+            >
+              Insert Head
+            </button>
+            <button
+              id="tab-inserttail"
+              class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-transparent text-[#9CA3AF]"
+            >
+              Insert Tail
+            </button>
+            <button
+              id="tab-delete"
+              class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-transparent text-[#9CA3AF]"
+            >
+              Delete
+            </button>
+            <button
+              id="tab-traverse"
+              class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-transparent text-[#9CA3AF]"
+            >
+              Traverse
+            </button>
+          </div>
 
-      <div id="did-you-know" class="bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]">
-  <div class="flex items-center gap-1.5 mb-3">
-    <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">The Danfo Bus Analogy</span>
-  </div>
-  <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
-    Think of a linked list like passengers sitting in a danfo bus, one behind the other in
-    a single row. Each passenger only knows who is sitting directly in front of them —
-    they have no idea who's behind. If you want to find the fifth passenger, you can't
-    just jump there; you have to start from the first person and ask each one, "who's
-    next?" until you reach them. That's exactly how a linked list works: each
-    <strong class="text-[#111827]">node</strong> only knows about the
-    <strong class="text-[#111827]">next</strong> node, so getting anywhere means
-    traversing from the start — there's no shortcut like an array's instant index access.
-    The upside is that adding or removing a passenger anywhere in the row is easy — you
-    just adjust who's pointing to whom.
-  </p>
-</div>
+          <!-- INSERT HEAD PANEL -->
+          <div id="panel-inserthead" class="operation-panel">
+            <p class="text-[12px] text-[#6B7280] font-body mb-3">
+              Add a new node at the very front — it becomes the new head.
+            </p>
+            <div class="flex items-center gap-2 mb-5">
+              <input
+                type="text"
+                id="head-value"
+                placeholder="Value"
+                maxlength="6"
+                class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[120px]"
+              />
+              <button
+                id="head-btn"
+                class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]"
+              >
+                Insert Head
+              </button>
+            </div>
+          </div>
 
-<div class="pidgin-box bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]">
-  <div class="flex items-center gap-1.5 mb-3">
-    <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">For Pidgin Speakers</span>
-  </div>
-  <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
-    Think am like passenger wey dey sidon for danfo bus, one behind another for one row.
-    Every passenger just know the person wey dey sidon front of am — dem no know who dey
-    behind. If you wan find the fifth passenger, you no fit jump go meet am straight; you
-    go start from the first person, dey ask each one "who be next?" until you reach the
-    person. Na so linked list dey work: every <strong class="text-[#111827]">node</strong>
-    just know the <strong class="text-[#111827]">next</strong> node, so to reach anywhere
-    you must waka from the beginning — no shortcut like how array dey jump enter index
-    sharp sharp. The advantage na say to add or comot passenger anywhere for the row easy
-    — you just adjust who dey point to who.
-  </p>
-</div>
+          <!-- INSERT TAIL PANEL -->
+          <div id="panel-inserttail" class="operation-panel hidden">
+            <p class="text-[12px] text-[#6B7280] font-body mb-3">
+              Add a new node at the very end — it becomes the new tail.
+            </p>
+            <div class="flex items-center gap-2 mb-5">
+              <input
+                type="text"
+                id="tail-value"
+                placeholder="Value"
+                maxlength="6"
+                class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[120px]"
+              />
+              <button
+                id="tail-btn"
+                class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]"
+              >
+                Insert Tail
+              </button>
+            </div>
+          </div>
 
+          <!-- DELETE PANEL -->
+          <div id="panel-delete" class="operation-panel hidden">
+            <p class="text-[12px] text-[#6B7280] font-body mb-3">
+              Remove a node by value — its neighbors get reconnected around it.
+            </p>
+            <div class="flex items-center gap-2 mb-5">
+              <input
+                type="text"
+                id="delete-value"
+                placeholder="Value to delete"
+                maxlength="6"
+                class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[150px]"
+              />
+              <button
+                id="delete-btn"
+                class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
 
-<div class="bg-white border border-[#E5E7EB] rounded-xl p-6 mb-8 max-w-[900px]">
-  <div class="flex items-center justify-between mb-5">
-    <h2 class="font-display font-bold text-[18px]">Try it yourself</h2>
-    <span id="step-counter" class="text-[11px] font-code text-[#9CA3AF] bg-[#F8FAFC] px-3 py-1 rounded-md border border-[#E5E7EB]">Step 0</span>
-  </div>
+          <!-- TRAVERSE PANEL -->
+          <div id="panel-traverse" class="operation-panel hidden">
+            <p class="text-[12px] text-[#6B7280] font-body mb-3">
+              Step through the list one node at a time, from the head.
+            </p>
+            <div class="flex items-center gap-2 mb-5">
+              <button
+                id="traverse-start-btn"
+                class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]"
+              >
+                Start Traversal
+              </button>
+              <button
+                id="traverse-next-btn"
+                class="px-4 py-2 border border-[#E5E7EB] text-[#111827] rounded-lg text-[12px] font-bold font-ui hover:bg-[#F8FAFC]"
+                disabled
+              >
+                Next Node →
+              </button>
+            </div>
+          </div>
 
-  <!-- TABS -->
-  <div class="flex gap-2 mb-5 border-b border-[#E5E7EB]">
-    <button id="tab-inserthead" class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-[#7C3AED] text-[#7C3AED]">Insert Head</button>
-    <button id="tab-inserttail" class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-transparent text-[#9CA3AF]">Insert Tail</button>
-    <button id="tab-delete" class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-transparent text-[#9CA3AF]">Delete</button>
-    <button id="tab-traverse" class="tab-btn px-4 py-2 text-[12px] font-bold font-ui border-b-2 border-transparent text-[#9CA3AF]">Traverse</button>
-  </div>
+          <!-- SHARED MESSAGE + LIST DISPLAY -->
+          <p
+            id="list-message"
+            class="text-[12px] text-[#6B7280] font-body mb-4 min-h-[18px]"
+          ></p>
+          <div
+            id="list-container"
+            class="flex flex-wrap items-center gap-1.5"
+          ></div>
+        </div>
 
-  <!-- INSERT HEAD PANEL -->
-  <div id="panel-inserthead" class="operation-panel">
-    <p class="text-[12px] text-[#6B7280] font-body mb-3">Add a new node at the very front — it becomes the new head.</p>
-    <div class="flex items-center gap-2 mb-5">
-      <input type="text" id="head-value" placeholder="Value" maxlength="6" class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[120px]" />
-      <button id="head-btn" class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]">Insert Head</button>
-    </div>
-  </div>
+        <div class="mb-5">
+          <h2 class="font-display font-bold text-[22px] mb-2">
+            Where linked lists show up in real software
+          </h2>
+          <p
+            class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[700px]"
+          >
+            Because they grow and shrink easily without shifting everything else
+            around, linked lists show up anywhere data needs to change size
+            constantly.
+          </p>
+        </div>
 
-  <!-- INSERT TAIL PANEL -->
-  <div id="panel-inserttail" class="operation-panel hidden">
-    <p class="text-[12px] text-[#6B7280] font-body mb-3">Add a new node at the very end — it becomes the new tail.</p>
-    <div class="flex items-center gap-2 mb-5">
-      <input type="text" id="tail-value" placeholder="Value" maxlength="6" class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[120px]" />
-      <button id="tail-btn" class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]">Insert Tail</button>
-    </div>
-  </div>
+        <div
+          class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]"
+        >
+          <span
+            class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+            >Media</span
+          >
+          <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">
+            Music & Video Playlists
+          </h3>
+          <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+            Hitting "Next" or "Previous" on a playlist is essentially traversing
+            a linked list — each track only needs to know what comes after it,
+            and songs can be added or removed from the queue without reshuffling
+            the whole playlist.
+          </p>
+        </div>
 
-  <!-- DELETE PANEL -->
-  <div id="panel-delete" class="operation-panel hidden">
-    <p class="text-[12px] text-[#6B7280] font-body mb-3">Remove a node by value — its neighbors get reconnected around it.</p>
-    <div class="flex items-center gap-2 mb-5">
-      <input type="text" id="delete-value" placeholder="Value to delete" maxlength="6" class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[150px]" />
-      <button id="delete-btn" class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]">Delete</button>
-    </div>
-  </div>
+        <div
+          class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]"
+        >
+          <span
+            class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+            >Operating Systems</span
+          >
+          <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">
+            Memory Management
+          </h3>
+          <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+            Free blocks of memory in a computer aren't stored in one continuous
+            strip — they're scattered around. Operating systems track them using
+            linked lists, since blocks are constantly being claimed and released
+            as programs run.
+          </p>
+        </div>
 
-  <!-- TRAVERSE PANEL -->
-  <div id="panel-traverse" class="operation-panel hidden">
-    <p class="text-[12px] text-[#6B7280] font-body mb-3">Step through the list one node at a time, from the head.</p>
-    <div class="flex items-center gap-2 mb-5">
-      <button id="traverse-start-btn" class="px-4 py-2 bg-[#7C3AED] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#6D28D9]">Start Traversal</button>
-      <button id="traverse-next-btn" class="px-4 py-2 border border-[#E5E7EB] text-[#111827] rounded-lg text-[12px] font-bold font-ui hover:bg-[#F8FAFC]" disabled>Next Node →</button>
-    </div>
-  </div>
+        <div
+          class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]"
+        >
+          <span
+            class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+            >Applications</span
+          >
+          <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">
+            Undo & Redo History
+          </h3>
+          <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+            Many apps use a doubly linked list — where each node points both
+            forward and backward — to move between undo and redo states, letting
+            you step back and forth through your action history in either
+            direction.
+          </p>
+        </div>
 
-  <!-- SHARED MESSAGE + LIST DISPLAY -->
-  <p id="list-message" class="text-[12px] text-[#6B7280] font-body mb-4 min-h-[18px]"></p>
-  <div id="list-container" class="flex flex-wrap items-center gap-1.5"></div>
-</div>
+        <div
+          class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]"
+        >
+          <span
+            class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+            >Applications</span
+          >
+          <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">
+            Undo & Redo History
+          </h3>
+          <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-4">
+            Many apps use a doubly linked list — where each node points both
+            forward and backward — to move between undo and redo states. A
+            pointer marks your "current" position in the history; pressing undo
+            moves it one node back, redo moves it one node forward. Typing a
+            brand new action after undoing discards everything ahead of the
+            pointer, since that "future" no longer exists.
+          </p>
 
+          <p
+            class="text-[11px] font-bold font-ui text-[#6B7280] uppercase tracking-wide mb-2"
+          >
+            Worked example: type "A", type "B", type "C", then undo twice, then
+            type "D"
+          </p>
 
-<div class="mb-5">
-  <h2 class="font-display font-bold text-[22px] mb-2">Where linked lists show up in real software</h2>
-  <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[700px]">
-    Because they grow and shrink easily without shifting everything else around, linked
-    lists show up anywhere data needs to change size constantly.
-  </p>
-</div>
+          <table class="w-full text-[12px] font-body border-collapse">
+            <thead>
+              <tr class="border-b border-[#E5E7EB] text-left text-[#9CA3AF]">
+                <th class="py-2 pr-3 font-semibold">Action</th>
+                <th class="py-2 pr-3 font-semibold">History</th>
+                <th class="py-2 font-semibold">Pointer</th>
+              </tr>
+            </thead>
+            <tbody class="font-code">
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Type "A"</td>
+                <td class="py-2 pr-3">A</td>
+                <td class="py-2">A</td>
+              </tr>
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Type "B"</td>
+                <td class="py-2 pr-3">A ⇄ B</td>
+                <td class="py-2">B</td>
+              </tr>
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Type "C"</td>
+                <td class="py-2 pr-3">A ⇄ B ⇄ C</td>
+                <td class="py-2">C</td>
+              </tr>
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Undo</td>
+                <td class="py-2 pr-3">A ⇄ B ⇄ C</td>
+                <td class="py-2">B</td>
+              </tr>
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Undo</td>
+                <td class="py-2 pr-3">A ⇄ B ⇄ C</td>
+                <td class="py-2">A</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-3">Type "D"</td>
+                <td class="py-2 pr-3">
+                  A ⇄ D <span class="text-[#9CA3AF]">(B, C discarded)</span>
+                </td>
+                <td class="py-2">D</td>
+              </tr>
+            </tbody>
+          </table>
 
-<div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
-  <span class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Media</span>
-  <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Music & Video Playlists</h3>
-  <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
-    Hitting "Next" or "Previous" on a playlist is essentially traversing a linked list —
-    each track only needs to know what comes after it, and songs can be added or removed
-    from the queue without reshuffling the whole playlist.
-  </p>
-</div>
+          <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
+            This is why redo stops working once you type something new after
+            undoing — the "future" nodes B and C get cut off from the list.
+          </p>
+        </div>
 
-<div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
-  <span class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Operating Systems</span>
-  <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Memory Management</h3>
-  <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
-    Free blocks of memory in a computer aren't stored in one continuous strip — they're
-    scattered around. Operating systems track them using linked lists, since blocks are
-    constantly being claimed and released as programs run.
-  </p>
-</div>
+        <div
+          class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]"
+        >
+          <span
+            class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full"
+            >Media</span
+          >
+          <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">
+            Music & Video Playlists
+          </h3>
+          <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-4">
+            Hitting "Next" or "Previous" on a playlist is essentially traversing
+            a linked list. A "Now Playing" pointer marks the current song;
+            pressing Next moves the pointer forward to the next node, and
+            Previous moves it backward. Songs can be added to or removed from
+            the queue at any point without reshuffling the whole playlist — only
+            the pointers around that node need to change.
+          </p>
 
-<div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
-  <span class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Applications</span>
-  <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Undo & Redo History</h3>
-  <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
-    Many apps use a doubly linked list — where each node points both forward and
-    backward — to move between undo and redo states, letting you step back and forth
-    through your action history in either direction.
-  </p>
-</div>
+          <p
+            class="text-[11px] font-bold font-ui text-[#6B7280] uppercase tracking-wide mb-2"
+          >
+            Worked example: playlist of 3 songs, press Next, Next, then Previous
+          </p>
 
+          <table class="w-full text-[12px] font-body border-collapse">
+            <thead>
+              <tr class="border-b border-[#E5E7EB] text-left text-[#9CA3AF]">
+                <th class="py-2 pr-3 font-semibold">Action</th>
+                <th class="py-2 pr-3 font-semibold">Playlist</th>
+                <th class="py-2 font-semibold">Now Playing</th>
+              </tr>
+            </thead>
+            <tbody class="font-code">
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Start</td>
+                <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
+                <td class="py-2">Rush</td>
+              </tr>
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Next</td>
+                <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
+                <td class="py-2">Calm Down</td>
+              </tr>
+              <tr class="border-b border-[#F3F4F6]">
+                <td class="py-2 pr-3">Next</td>
+                <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
+                <td class="py-2">Unavailable</td>
+              </tr>
+              <tr>
+                <td class="py-2 pr-3">Previous</td>
+                <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
+                <td class="py-2">Calm Down</td>
+              </tr>
+            </tbody>
+          </table>
 
+          <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
+            The playlist itself never changes shape here — only the "Now
+            Playing" pointer moves across it, which is exactly how traversal
+            works in a linked list.
+          </p>
+        </div>
 
-<div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
-  <span class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Applications</span>
-  <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Undo & Redo History</h3>
-  <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-4">
-    Many apps use a doubly linked list — where each node points both forward and
-    backward — to move between undo and redo states. A pointer marks your "current"
-    position in the history; pressing undo moves it one node back, redo moves it one
-    node forward. Typing a brand new action after undoing discards everything ahead of
-    the pointer, since that "future" no longer exists.
-  </p>
-
-  <p class="text-[11px] font-bold font-ui text-[#6B7280] uppercase tracking-wide mb-2">
-    Worked example: type "A", type "B", type "C", then undo twice, then type "D"
-  </p>
-
-  <table class="w-full text-[12px] font-body border-collapse">
-    <thead>
-      <tr class="border-b border-[#E5E7EB] text-left text-[#9CA3AF]">
-        <th class="py-2 pr-3 font-semibold">Action</th>
-        <th class="py-2 pr-3 font-semibold">History</th>
-        <th class="py-2 font-semibold">Pointer</th>
-      </tr>
-    </thead>
-    <tbody class="font-code">
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Type "A"</td>
-        <td class="py-2 pr-3">A</td>
-        <td class="py-2">A</td>
-      </tr>
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Type "B"</td>
-        <td class="py-2 pr-3">A ⇄ B</td>
-        <td class="py-2">B</td>
-      </tr>
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Type "C"</td>
-        <td class="py-2 pr-3">A ⇄ B ⇄ C</td>
-        <td class="py-2">C</td>
-      </tr>
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Undo</td>
-        <td class="py-2 pr-3">A ⇄ B ⇄ C</td>
-        <td class="py-2">B</td>
-      </tr>
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Undo</td>
-        <td class="py-2 pr-3">A ⇄ B ⇄ C</td>
-        <td class="py-2">A</td>
-      </tr>
-      <tr>
-        <td class="py-2 pr-3">Type "D"</td>
-        <td class="py-2 pr-3">A ⇄ D <span class="text-[#9CA3AF]">(B, C discarded)</span></td>
-        <td class="py-2">D</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
-    This is why redo stops working once you type something new after undoing —
-    the "future" nodes B and C get cut off from the list.
-  </p>
-</div>
-
-
-<div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
-  <span class="bg-[#F5F3FF] text-[#7C3AED] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Media</span>
-  <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Music & Video Playlists</h3>
-  <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-4">
-    Hitting "Next" or "Previous" on a playlist is essentially traversing a linked list.
-    A "Now Playing" pointer marks the current song; pressing Next moves the pointer
-    forward to the next node, and Previous moves it backward. Songs can be added to or
-    removed from the queue at any point without reshuffling the whole playlist — only
-    the pointers around that node need to change.
-  </p>
-
-  <p class="text-[11px] font-bold font-ui text-[#6B7280] uppercase tracking-wide mb-2">
-    Worked example: playlist of 3 songs, press Next, Next, then Previous
-  </p>
-
-  <table class="w-full text-[12px] font-body border-collapse">
-    <thead>
-      <tr class="border-b border-[#E5E7EB] text-left text-[#9CA3AF]">
-        <th class="py-2 pr-3 font-semibold">Action</th>
-        <th class="py-2 pr-3 font-semibold">Playlist</th>
-        <th class="py-2 font-semibold">Now Playing</th>
-      </tr>
-    </thead>
-    <tbody class="font-code">
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Start</td>
-        <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
-        <td class="py-2">Rush</td>
-      </tr>
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Next</td>
-        <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
-        <td class="py-2">Calm Down</td>
-      </tr>
-      <tr class="border-b border-[#F3F4F6]">
-        <td class="py-2 pr-3">Next</td>
-        <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
-        <td class="py-2">Unavailable</td>
-      </tr>
-      <tr>
-        <td class="py-2 pr-3">Previous</td>
-        <td class="py-2 pr-3">Rush ⇄ Calm Down ⇄ Unavailable</td>
-        <td class="py-2">Calm Down</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
-    The playlist itself never changes shape here — only the "Now Playing" pointer moves
-    across it, which is exactly how traversal works in a linked list.
-  </p>
-</div>
-
-
-    <!-- Next page -->
+        <!-- Next page -->
         <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
-          <a href="/pages/stack.html" class="group relative w-11 h-11 rounded-full bg-[#0D9488] shadow-md flex items-center justify-center text-white hover:bg-[#0F766E]">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          <span class="absolute bottom-full mb-2 right-0 whitespace-nowrap bg-[#111827] text-white text-[11px] font-ui px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none"> Stack</span>
+          <a
+            href="pages/stack.html"
+            class="group relative w-11 h-11 rounded-full bg-[#0D9488] shadow-md flex items-center justify-center text-white hover:bg-[#0F766E]"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+            <span
+              class="absolute bottom-full mb-2 right-0 whitespace-nowrap bg-[#111827] text-white text-[11px] font-ui px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none"
+            >
+              Stack</span
+            >
           </a>
         </div>
+      </main>
+    </div>
 
-    </main>
-
-  </div>
-
-  <script>
-    lucide.createIcons();
-  </script>
-  <script src="/assets/js/shared/pidgin.js"></script>
-  <script src="./assets/js/shared/didyouknow.js"></script>
-  <script src="/assets/js/shared/onboarding.js"></script>
-  <script src="/assets/js/data-structures/linked-list.js"></script>
-</body>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="/assets/js/shared/pidgin.js"></script>
+    <script src="./assets/js/shared/didyouknow.js"></script>
+    <script src="/assets/js/shared/onboarding.js"></script>
+    <script src="/assets/js/data-structures/linked-list.js"></script>
+  </body>
 </html>

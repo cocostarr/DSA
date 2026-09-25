@@ -1,309 +1,481 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduViz DSA | Learn Data Structures & Algorithms the Nigeria Way</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/main.css"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <base href="/DSA/">
-</head>
-<body class="bg-white text-[#111827] font-body">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      EduViz DSA | Learn Data Structures & Algorithms the Nigeria Way
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <base href="/DSA/" />
+  </head>
+  <body class="bg-white text-[#111827] font-body">
+    <!-- ONBOARDING TOUR -->
+    <div
+      id="tour-overlay"
+      class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4"
+    >
+      <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
+        <div id="tour-icon" class="text-[32px] mb-3"></div>
+        <h3
+          id="tour-title"
+          class="font-display font-bold text-[18px] mb-2"
+        ></h3>
+        <p
+          id="tour-body"
+          class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"
+        ></p>
 
-  <!-- ONBOARDING TOUR -->
-  <div id="tour-overlay" class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4">
-    <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
-      <div id="tour-icon" class="text-[32px] mb-3"></div>
-      <h3 id="tour-title" class="font-display font-bold text-[18px] mb-2"></h3>
-      <p id="tour-body" class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"></p>
-
-      <div class="flex items-center justify-between">
-        <div id="tour-dots" class="flex gap-1.5"></div>
-        <div class="flex items-center gap-3">
-          <button id="tour-skip-btn" class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]">Skip</button>
-          <button id="tour-next-btn" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]">Next</button>
+        <div class="flex items-center justify-between">
+          <div id="tour-dots" class="flex gap-1.5"></div>
+          <div class="flex items-center gap-3">
+            <button
+              id="tour-skip-btn"
+              class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]"
+            >
+              Skip
+            </button>
+            <button
+              id="tour-next-btn"
+              class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- TOP NAVIGATION BAR -->
-  <header class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50">
+    <!-- TOP NAVIGATION BAR -->
+    <header
+      class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50"
+    >
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 shrink-0">
+        <!-- Bar chart logo: three SVG rectangles, middle bar is tallest -->
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style="display: block"
+        >
+          <rect x="2" y="16" width="6" height="10" rx="1.5" fill="#0D9488" />
+          <rect x="11" y="6" width="6" height="20" rx="1.5" fill="#0D9488" />
+          <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488" />
+        </svg>
 
-    <!-- Logo -->
-    <a href="index.html" class="flex items-center gap-2 shrink-0">
-
-    <!-- Bar chart logo: three SVG rectangles, middle bar is tallest -->
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
-      <rect x="2"  y="16" width="6" height="10" rx="1.5" fill="#0D9488"/>
-      <rect x="11" y="6"  width="6" height="20" rx="1.5" fill="#0D9488"/>
-      <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488"/>
-    </svg>
-
-    <!-- Site name next to the logo -->
-    <span class="font-ui font-bold text-[15px] leading-none">EduViz <span class="text-[#0D9488]">DSA</span></span>
-
-    </a>
-
-    <!-- Search box -->
-    <div class="flex-1 max-w-[380px]">
-      <input
-        type="search"
-        placeholder="Search a topic, operation, or question..."
-        class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
-      />
-    </div>
-
-    <!-- Right side: Pidgin toggle + button -->
-    <div class="ml-auto flex items-center gap-3">
-
-      <!-- Pidgin toggle -->
-      <div class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5">
-        <span class="text-[11px] font-semibold text-[#0D9488] font-ui">EN</span>
-        <button
-          id="pidgin-toggle"
-          class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
-          aria-pressed="false"
-          aria-label="Toggle Pidgin explanations">
-          <span class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"></span>
-        </button>
-        <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui">Pidgin</span>
-      </div>
-
-      <!-- Start Learning button -->
-      <a href="/pages/arrays.html" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui">
-        Start Learning
+        <!-- Site name next to the logo -->
+        <span class="font-ui font-bold text-[15px] leading-none"
+          >EduViz <span class="text-[#0D9488]">DSA</span></span
+        >
       </a>
 
-    </div>
+      <!-- Search box -->
+      <div class="flex-1 max-w-[380px]">
+        <input
+          type="search"
+          placeholder="Search a topic, operation, or question..."
+          class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
+        />
+      </div>
 
-  </header>
-
-  <!-- sidebar + main content side by side -->
-  <div class="flex">
-
-    <!-- LEFT SIDEBAR -->
-    <aside class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto">
-
-    <!-- EXPLORE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1">Explore</p>
-    <a href="/index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]">
-      <i data-lucide="home" class="w-4 h-4"></i> Home</a>
-    <a href="/pages/concepts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a>
-
-    <!-- DATA STRUCTURES -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Data Structures</p>
-    <a href="/pages/arrays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
-    </a>
-    <a href="/pages/linked-list.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked List
-    </a>
-    <a href="/pages/stack.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
-    </a>
-    <a href="/pages/queue.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
-    </a>
-
-    <!-- ALGORITHMS -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Algorithms</p>
-    <a href="/pages/linear-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear Search
-    </a>
-    <a href="/pages/binary-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary Search
-    </a>
-    <a href="/pages/bubble-sort.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
-      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble Sort
-    </a>
-
-    <!-- PRACTICE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Practice</p>
-    <a href="pages/practice.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a>
-    <a href="pages/practice.html#past-questions" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a>
-
-    <!-- MORE -->
-    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">More</p>
-    <a href="pages/about.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="info" class="w-4 h-4"></i> About Project</a>
-
-
-    <button id="tour-help-btn" type="button" class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]" 
-    style="font-family: 'Space Grotesk', sans-serif;"> <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour</button>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 px-9 pb-7">
-
-    <div class=" mt-6 mb-10 max-w-[900px]">
-        <h2 class="font-display font-bold text-[22px] mb-2">Understanding Big-O Notation</h2>
-        <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body mb-5">
-            Every page on this site labels its structures and algorithms with something like
-            <span class="font-code text-[#0D9488]">O(n)</span> or
-            <span class="font-code text-[#0D9488]">O(log n)</span>. This is called
-            <strong class="text-[#111827]">Big-O notation</strong>, and it's simply a way to
-            describe how an algorithm's speed changes as the amount of data grows — without
-            getting distracted by exact numbers or specific hardware.
-        </p>
-
-        <div class="grid grid-cols-2 gap-4">
-
-            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
-            <span class="text-[13px] font-code font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-1 rounded-md border border-[#A7F3D0]">O(1)</span>
-            <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">Constant Time</h4>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-                Takes the same amount of time no matter how much data there is. Example:
-                Array Access — jumping straight to index 5 takes one step whether the array
-                has 10 items or 10 million.
-            </p>
-            </div>
-
-            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
-            <span class="text-[13px] font-code font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-1 rounded-md border border-[#BFDBFE]">O(log n)</span>
-            <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">Logarithmic Time</h4>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-                Gets slightly slower as data grows, but very gradually — each step eliminates
-                half of what's left. Example: Binary Search.
-            </p>
-            </div>
-
-            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
-            <span class="text-[13px] font-code font-bold text-[#DC2626] bg-[#FEF2F2] px-2.5 py-1 rounded-md border border-[#FECACA]">O(n)</span>
-            <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">Linear Time</h4>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-                Time grows in direct proportion to the data — double the data, double the
-                work. Example: Linear Search, checking every item once.
-            </p>
-            </div>
-
-            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
-            <span class="text-[13px] font-code font-bold text-[#D97706] bg-[#FFFBEB] px-2.5 py-1 rounded-md border border-[#FDE68A]">O(n²)</span>
-            <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">Quadratic Time</h4>
-            <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-                Time grows much faster than the data — double the data, and the work roughly
-                quadruples. Example: Bubble Sort, comparing every pair against every other pair.
-            </p>
-            </div>
-
+      <!-- Right side: Pidgin toggle + button -->
+      <div class="ml-auto flex items-center gap-3">
+        <!-- Pidgin toggle -->
+        <div
+          class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5"
+        >
+          <span class="text-[11px] font-semibold text-[#0D9488] font-ui"
+            >EN</span
+          >
+          <button
+            id="pidgin-toggle"
+            class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
+            aria-pressed="false"
+            aria-label="Toggle Pidgin explanations"
+          >
+            <span
+              class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"
+            ></span>
+          </button>
+          <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui"
+            >Pidgin</span
+          >
         </div>
 
-        <p class="text-[11px] text-[#9CA3AF] font-body mt-4">
-            The general order from fastest to slowest, for large amounts of data:
-            <span class="font-code">O(1) &lt; O(log n) &lt; O(n) &lt; O(n²)</span>
-        </p>
-    </div>
+        <!-- Start Learning button -->
+        <a
+          href="pages/arrays.html"
+          class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui"
+        >
+          Start Learning
+        </a>
+      </div>
+    </header>
 
-    <div class="mb-10 max-w-[900px]">
-        <h2 class="font-display font-bold text-[22px] mb-2">Data Structures at a Glance</h2>
-        <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body mb-5">
-            A quick summary of every structure covered on this site — useful for revision right
-            before an exam.
+    <!-- sidebar + main content side by side -->
+    <div class="flex">
+      <!-- LEFT SIDEBAR -->
+      <aside
+        class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto"
+      >
+        <!-- EXPLORE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1"
+        >
+          Explore
         </p>
+        <a
+          href="/index.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]"
+        >
+          <i data-lucide="home" class="w-4 h-4"></i> Home</a
+        >
+        <a
+          href="pages/concepts.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a
+        >
 
-        <div class="overflow-x-auto">
+        <!-- DATA STRUCTURES -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Data Structures
+        </p>
+        <a
+          href="pages/arrays.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
+        </a>
+        <a
+          href="pages/linked-list.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked
+          List
+        </a>
+        <a
+          href="pages/stack.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
+        </a>
+        <a
+          href="pages/queue.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
+        </a>
+
+        <!-- ALGORITHMS -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Algorithms
+        </p>
+        <a
+          href="pages/linear-search.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear
+          Search
+        </a>
+        <a
+          href="pages/binary-search.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary
+          Search
+        </a>
+        <a
+          href="pages/bubble-sort.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble
+          Sort
+        </a>
+
+        <!-- PRACTICE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          Practice
+        </p>
+        <a
+          href="pages/practice.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a
+        >
+        <a
+          href="pages/practice.html#past-questions"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a
+        >
+
+        <!-- MORE -->
+        <p
+          class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1"
+        >
+          More
+        </p>
+        <a
+          href="pages/about.html"
+          class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          ><i data-lucide="info" class="w-4 h-4"></i> About Project</a
+        >
+
+        <button
+          id="tour-help-btn"
+          type="button"
+          class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"
+          style="font-family: &quot;Space Grotesk&quot;, sans-serif"
+        >
+          <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour
+        </button>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 px-9 pb-7">
+        <div class="mt-6 mb-10 max-w-[900px]">
+          <h2 class="font-display font-bold text-[22px] mb-2">
+            Understanding Big-O Notation
+          </h2>
+          <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body mb-5">
+            Every page on this site labels its structures and algorithms with
+            something like
+            <span class="font-code text-[#0D9488]">O(n)</span> or
+            <span class="font-code text-[#0D9488]">O(log n)</span>. This is
+            called <strong class="text-[#111827]">Big-O notation</strong>, and
+            it's simply a way to describe how an algorithm's speed changes as
+            the amount of data grows — without getting distracted by exact
+            numbers or specific hardware.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
+              <span
+                class="text-[13px] font-code font-bold text-[#059669] bg-[#ECFDF5] px-2.5 py-1 rounded-md border border-[#A7F3D0]"
+                >O(1)</span
+              >
+              <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">
+                Constant Time
+              </h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Takes the same amount of time no matter how much data there is.
+                Example: Array Access — jumping straight to index 5 takes one
+                step whether the array has 10 items or 10 million.
+              </p>
+            </div>
+
+            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
+              <span
+                class="text-[13px] font-code font-bold text-[#3B82F6] bg-[#EFF6FF] px-2.5 py-1 rounded-md border border-[#BFDBFE]"
+                >O(log n)</span
+              >
+              <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">
+                Logarithmic Time
+              </h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Gets slightly slower as data grows, but very gradually — each
+                step eliminates half of what's left. Example: Binary Search.
+              </p>
+            </div>
+
+            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
+              <span
+                class="text-[13px] font-code font-bold text-[#DC2626] bg-[#FEF2F2] px-2.5 py-1 rounded-md border border-[#FECACA]"
+                >O(n)</span
+              >
+              <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">
+                Linear Time
+              </h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Time grows in direct proportion to the data — double the data,
+                double the work. Example: Linear Search, checking every item
+                once.
+              </p>
+            </div>
+
+            <div class="bg-white border border-[#E5E7EB] rounded-xl p-4">
+              <span
+                class="text-[13px] font-code font-bold text-[#D97706] bg-[#FFFBEB] px-2.5 py-1 rounded-md border border-[#FDE68A]"
+                >O(n²)</span
+              >
+              <h4 class="text-[13px] font-bold font-ui mt-3 mb-1">
+                Quadratic Time
+              </h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Time grows much faster than the data — double the data, and the
+                work roughly quadruples. Example: Bubble Sort, comparing every
+                pair against every other pair.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-[#9CA3AF] font-body mt-4">
+            The general order from fastest to slowest, for large amounts of
+            data:
+            <span class="font-code"
+              >O(1) &lt; O(log n) &lt; O(n) &lt; O(n²)</span
+            >
+          </p>
+        </div>
+
+        <div class="mb-10 max-w-[900px]">
+          <h2 class="font-display font-bold text-[22px] mb-2">
+            Data Structures at a Glance
+          </h2>
+          <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body mb-5">
+            A quick summary of every structure covered on this site — useful for
+            revision right before an exam.
+          </p>
+
+          <div class="overflow-x-auto">
             <table class="w-full text-[12px] font-body border-collapse">
-            <thead>
-                <tr class="border-b-2 border-[#E5E7EB] text-left text-[#6B7280]">
-                <th class="py-3 pr-4 font-bold">Structure</th>
-                <th class="py-3 pr-4 font-bold">Access</th>
-                <th class="py-3 pr-4 font-bold">Insert</th>
-                <th class="py-3 pr-4 font-bold">Delete</th>
-                <th class="py-3 font-bold">Ordering</th>
+              <thead>
+                <tr
+                  class="border-b-2 border-[#E5E7EB] text-left text-[#6B7280]"
+                >
+                  <th class="py-3 pr-4 font-bold">Structure</th>
+                  <th class="py-3 pr-4 font-bold">Access</th>
+                  <th class="py-3 pr-4 font-bold">Insert</th>
+                  <th class="py-3 pr-4 font-bold">Delete</th>
+                  <th class="py-3 font-bold">Ordering</th>
                 </tr>
-            </thead>
-            <tbody class="font-code">
+              </thead>
+              <tbody class="font-code">
                 <tr class="border-b border-[#F3F4F6]">
-                <td class="py-3 pr-4 font-ui font-bold text-[#3B82F6]">Array</td>
-                <td class="py-3 pr-4">O(1)</td>
-                <td class="py-3 pr-4">O(n)</td>
-                <td class="py-3 pr-4">O(n)</td>
-                <td class="py-3 text-[#6B7280]">By index</td>
-                </tr>
-                <tr class="border-b border-[#F3F4F6]">
-                <td class="py-3 pr-4 font-ui font-bold text-[#7C3AED]">Linked List</td>
-                <td class="py-3 pr-4">O(n)</td>
-                <td class="py-3 pr-4">O(1)*</td>
-                <td class="py-3 pr-4">O(n)</td>
-                <td class="py-3 text-[#6B7280]">By pointer chain</td>
+                  <td class="py-3 pr-4 font-ui font-bold text-[#3B82F6]">
+                    Array
+                  </td>
+                  <td class="py-3 pr-4">O(1)</td>
+                  <td class="py-3 pr-4">O(n)</td>
+                  <td class="py-3 pr-4">O(n)</td>
+                  <td class="py-3 text-[#6B7280]">By index</td>
                 </tr>
                 <tr class="border-b border-[#F3F4F6]">
-                <td class="py-3 pr-4 font-ui font-bold text-[#059669]">Stack</td>
-                <td class="py-3 pr-4">O(n)</td>
-                <td class="py-3 pr-4">O(1)</td>
-                <td class="py-3 pr-4">O(1)</td>
-                <td class="py-3 text-[#6B7280]">LIFO (top only)</td>
+                  <td class="py-3 pr-4 font-ui font-bold text-[#7C3AED]">
+                    Linked List
+                  </td>
+                  <td class="py-3 pr-4">O(n)</td>
+                  <td class="py-3 pr-4">O(1)*</td>
+                  <td class="py-3 pr-4">O(n)</td>
+                  <td class="py-3 text-[#6B7280]">By pointer chain</td>
+                </tr>
+                <tr class="border-b border-[#F3F4F6]">
+                  <td class="py-3 pr-4 font-ui font-bold text-[#059669]">
+                    Stack
+                  </td>
+                  <td class="py-3 pr-4">O(n)</td>
+                  <td class="py-3 pr-4">O(1)</td>
+                  <td class="py-3 pr-4">O(1)</td>
+                  <td class="py-3 text-[#6B7280]">LIFO (top only)</td>
                 </tr>
                 <tr>
-                <td class="py-3 pr-4 font-ui font-bold text-[#D97706]">Queue</td>
-                <td class="py-3 pr-4">O(n)</td>
-                <td class="py-3 pr-4">O(1)</td>
-                <td class="py-3 pr-4">O(1)</td>
-                <td class="py-3 text-[#6B7280]">FIFO (front/rear only)</td>
+                  <td class="py-3 pr-4 font-ui font-bold text-[#D97706]">
+                    Queue
+                  </td>
+                  <td class="py-3 pr-4">O(n)</td>
+                  <td class="py-3 pr-4">O(1)</td>
+                  <td class="py-3 pr-4">O(1)</td>
+                  <td class="py-3 text-[#6B7280]">FIFO (front/rear only)</td>
                 </tr>
-            </tbody>
+              </tbody>
             </table>
+          </div>
+
+          <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
+            *Insert at the head of a linked list is O(1); inserting at an
+            arbitrary position still requires traversing to it first, which is
+            O(n).
+          </p>
         </div>
 
-        <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
-            *Insert at the head of a linked list is O(1); inserting at an arbitrary position
-            still requires traversing to it first, which is O(n).
-        </p>
+        <div class="mb-10 max-w-[900px]">
+          <h2 class="font-display font-bold text-[22px] mb-2">
+            Beyond This Site
+          </h2>
+          <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body mb-5">
+            EduViz DSA focuses on linear structures and foundational algorithms
+            — the building blocks everything else is built on. Once you're
+            comfortable here, these
+            <strong class="text-[#111827]">non-linear</strong> structures are
+            the natural next step, and GeeksForGeeks has excellent visual guides
+            for each:
+          </p>
+
+          <div class="grid grid-cols-3 gap-4">
+            <a
+              href="https://www.geeksforgeeks.org/binary-tree-data-structure/"
+              target="_blank"
+              class="bg-white border border-[#E5E7EB] rounded-xl p-4 hover:shadow-md transition-shadow duration-200 block"
+            >
+              <h4 class="text-[13px] font-bold font-ui mb-1">🌳 Trees</h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Hierarchical structures where each node can have multiple
+                children — used in file systems, databases, and decision-making
+                algorithms.
+              </p>
+            </a>
+
+            <a
+              href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/"
+              target="_blank"
+              class="bg-white border border-[#E5E7EB] rounded-xl p-4 hover:shadow-md transition-shadow duration-200 block"
+            >
+              <h4 class="text-[13px] font-bold font-ui mb-1">🕸️ Graphs</h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Networks of connected nodes — the foundation behind maps, social
+                networks, and route-finding apps.
+              </p>
+            </a>
+
+            <a
+              href="https://www.geeksforgeeks.org/hashing-data-structure/"
+              target="_blank"
+              class="bg-white border border-[#E5E7EB] rounded-xl p-4 hover:shadow-md transition-shadow duration-200 block"
+            >
+              <h4 class="text-[13px] font-bold font-ui mb-1">🔑 Hash Tables</h4>
+              <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
+                Structures that map keys directly to values for near-instant
+                lookup — used everywhere from caches to databases.
+              </p>
+            </a>
+          </div>
+        </div>
+
+        <footer
+          class="border-t border-[#E5E7EB] mt-10 pt-5 pb-6 flex items-center justify-between"
+        >
+          <p class="text-[11px] text-[#9CA3AF] font-body">
+            © 2026 EduViz DSA · University of Jos, Faculty of Computing
+          </p>
+          <div class="flex items-center gap-3">
+            <a
+              href="../index.html"
+              class="text-[11px] text-[#0D9488] font-body hover:underline"
+              >Home</a
+            >
+            <span class="text-[#E5E7EB]">·</span>
+            <a
+              href="about.html"
+              class="text-[11px] text-[#0D9488] font-body hover:underline"
+              >About Project</a
+            >
+          </div>
+        </footer>
+      </main>
     </div>
-
-    <div class="mb-10 max-w-[900px]">
-  <h2 class="font-display font-bold text-[22px] mb-2">Beyond This Site</h2>
-  <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body mb-5">
-    EduViz DSA focuses on linear structures and foundational algorithms — the building
-    blocks everything else is built on. Once you're comfortable here, these
-    <strong class="text-[#111827]">non-linear</strong> structures are the natural next
-    step, and GeeksForGeeks has excellent visual guides for each:
-  </p>
-
-  <div class="grid grid-cols-3 gap-4">
-
-    <a href="https://www.geeksforgeeks.org/binary-tree-data-structure/" target="_blank" class="bg-white border border-[#E5E7EB] rounded-xl p-4 hover:shadow-md transition-shadow duration-200 block">
-      <h4 class="text-[13px] font-bold font-ui mb-1">🌳 Trees</h4>
-      <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-        Hierarchical structures where each node can have multiple children — used in
-        file systems, databases, and decision-making algorithms.
-      </p>
-    </a>
-
-    <a href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/" target="_blank" class="bg-white border border-[#E5E7EB] rounded-xl p-4 hover:shadow-md transition-shadow duration-200 block">
-      <h4 class="text-[13px] font-bold font-ui mb-1">🕸️ Graphs</h4>
-      <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-        Networks of connected nodes — the foundation behind maps, social networks, and
-        route-finding apps.
-      </p>
-    </a>
-
-    <a href="https://www.geeksforgeeks.org/hashing-data-structure/" target="_blank" class="bg-white border border-[#E5E7EB] rounded-xl p-4 hover:shadow-md transition-shadow duration-200 block">
-      <h4 class="text-[13px] font-bold font-ui mb-1">🔑 Hash Tables</h4>
-      <p class="text-[12px] text-[#6B7280] font-body leading-[1.6]">
-        Structures that map keys directly to values for near-instant lookup — used
-        everywhere from caches to databases.
-      </p>
-    </a>
-
-  </div>
-</div>
-
-<footer class="border-t border-[#E5E7EB] mt-10 pt-5 pb-6 flex items-center justify-between">
-  <p class="text-[11px] text-[#9CA3AF] font-body">
-    © 2026 EduViz DSA · University of Jos, Faculty of Computing
-  </p>
-  <div class="flex items-center gap-3">
-    <a href="../index.html" class="text-[11px] text-[#0D9488] font-body hover:underline">Home</a>
-    <span class="text-[#E5E7EB]">·</span>
-    <a href="about.html" class="text-[11px] text-[#0D9488] font-body hover:underline">About Project</a>
-  </div>
-</footer>
-
-    </main>
-  
-  </div>
 
     <script>
       lucide.createIcons();
@@ -311,5 +483,5 @@
     <script src="/assets/js/shared/pidgin.js"></script>
     <script src="./assets/js/shared/didyouknow.js"></script>
     <script src="/assets/js/shared/onboarding.js"></script>
-</body>
+  </body>
 </html>
