@@ -1,6 +1,5 @@
 /*
-  Tailwind handles almost everything through utility classes.
-  This file holds only what Tailwind cannot do on its own:
+  utility classes.
   1. Registering our custom fonts as Tailwind-usable utilities
   2. The Pidgin toggle switch animation
   3. The Pidgin box show/hide behavior
@@ -8,11 +7,10 @@
 */
 
 /* ---------- Custom font utilities ----------
-  These let us write class names like font-display, font-body, font-ui, font-code.
   Tailwind reads @layer utilities and treats them as real classes.
 */
 @layer utilities {
-  .font-display    { font-family: 'Playfair Display', serif; }
+  .font-display    { font-family: 'Plus Jakarta Sans', sans-serif; }
   .font-body       { font-family: 'Poppins', sans-serif; }
   .font-ui         { font-family: 'Space Grotesk', sans-serif; }
   .font-code       { font-family: 'JetBrains Mono', monospace; }
@@ -20,15 +18,14 @@
 
 /* ---------- Pidgin toggle switch ---------- */
 #pidgin-toggle.is-on {
-  background-color: #0D9488;
+  background-color: #097269;
 }
 #pidgin-toggle.is-on .toggle-knob {
   left: calc(100% - 14px);
 }
 
 /* ---------- Pidgin explanation boxes ----------
-  Every .pidgin-box on every page starts hidden.
-  When pidgin.js adds "pidgin-on" to <body>, they all appear.
+  Every .pidgin-box on every page starts hidden
 */
 .pidgin-box {
   display: none;
@@ -44,4 +41,9 @@ body.pidgin-on .pidgin-box {
 }
 #dyk-bar.is-animating {
   animation: dyk-fill 8s linear forwards;
+}
+
+/* ------ body/paragraph text for better readability ------ */
+.text-\[\#6B7280\] {
+  color: #4B5563 !important;
 }

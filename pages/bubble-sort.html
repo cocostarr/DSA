@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Sort | EduViz DSA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-white text-[#111827] font-body">
+
+  <!-- ONBOARDING TOUR -->
+  <div id="tour-overlay" class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4">
+    <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
+      <div id="tour-icon" class="text-[32px] mb-3"></div>
+      <h3 id="tour-title" class="font-display font-bold text-[18px] mb-2"></h3>
+      <p id="tour-body" class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"></p>
+
+      <div class="flex items-center justify-between">
+        <div id="tour-dots" class="flex gap-1.5"></div>
+        <div class="flex items-center gap-3">
+          <button id="tour-skip-btn" class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]">Skip</button>
+          <button id="tour-next-btn" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50">
+
+    <a href="../index.html" class="flex items-center gap-2 shrink-0">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+        <rect x="2"  y="16" width="6" height="10" rx="1.5" fill="#0D9488"/>
+        <rect x="11" y="6"  width="6" height="20" rx="1.5" fill="#0D9488"/>
+        <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488"/>
+      </svg>
+      <span class="font-ui font-bold text-[15px] leading-none">EduViz <span class="text-[#0D9488]">DSA</span></span>
+    </a>
+
+    <div class="flex-1 max-w-[380px]">
+      <input
+        type="search"
+        placeholder="Search a topic, operation, or question..."
+        class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
+      />
+    </div>
+
+    <div class="ml-auto flex items-center gap-3">
+      <div class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5">
+        <span class="text-[11px] font-semibold text-[#0D9488] font-ui">EN</span>
+        <button
+          id="pidgin-toggle"
+          class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
+          aria-pressed="false"
+          aria-label="Toggle Pidgin explanations">
+          <span class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"></span>
+        </button>
+        <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui">Pidgin</span>
+      </div>
+
+      <a href="array.html" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui">
+        Start Learning
+      </a>
+    </div>
+
+  </header>
+
+  <div class="flex">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto">
+
+    <!-- EXPLORE -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1">Explore</p>
+    <a href="/index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]">
+      <i data-lucide="home" class="w-4 h-4"></i> Home</a>
+    <a href="/pages/concepts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a>
+
+    <!-- DATA STRUCTURES -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Data Structures</p>
+    <a href="/pages/arrays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
+    </a>
+    <a href="/pages/linked-list.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked List
+    </a>
+    <a href="/pages/stack.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
+    </a>
+    <a href="/pages/queue.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
+    </a>
+
+    <!-- ALGORITHMS -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Algorithms</p>
+    <a href="/pages/linear-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear Search
+    </a>
+    <a href="/pages/binary-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary Search
+    </a>
+    <a href="/pages/bubble-sort.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble Sort
+    </a>
+
+    <!-- PRACTICE -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Practice</p>
+    <a href="/pages/practice.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a>
+    <a href="/pages/practice.html#past-questions" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a>
+
+    <!-- MORE -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">More</p>
+    <a href="/pages/about.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="info" class="w-4 h-4"></i> About Project</a>
+
+     <button id="tour-help-btn" type="button" class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]" 
+     style="font-family: 'Space Grotesk', sans-serif;"> <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 px-9 pb-7">
+
+      <!-- HEADER + PREVIEW -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6 items-center mb-8 pt-6 max-w-[900px]">
+
+        <div>
+          <span class="inline-block bg-[#FEF2F2] text-[#DC2626] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3">
+            Algorithms
+          </span>
+          <div class="flex items-center gap-3 mb-3">
+            <h1 class="font-display font-bold text-[32px]">Bubble Sort</h1>
+            <span class="text-[12px] font-code font-bold text-[#DC2626] bg-[#FEF2F2] px-3 py-1 rounded-md border border-[#FECACA]">O(n²)</span>
+          </div>
+          <p class="text-[13px] text-[#6B7280] leading-[1.75] font-body">
+            Bubble sort repeatedly steps through a list, compares each pair of
+            <strong class="text-[#111827]">neighboring</strong> items, and swaps them if
+            they're in the wrong order. It repeats this pass over and over until no more
+            swaps are needed, meaning the list is fully sorted.
+          </p>
+        </div>
+
+        <div class="bg-[#F8FAFC] rounded-lg p-5 flex items-center gap-1.5">
+          <div class="w-11 h-11 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[14px] font-code text-[#9CA3AF]">3</div>
+          <div class="w-11 h-11 border-2 border-[#D97706] rounded-lg flex items-center justify-center text-[14px] font-code text-white bg-[#D97706]">8</div>
+          <div class="w-11 h-11 border-2 border-[#D97706] rounded-lg flex items-center justify-center text-[14px] font-code text-[#D97706] bg-[#FFFBEB]">5</div>
+          <div class="w-11 h-11 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[14px] font-code text-[#9CA3AF]">9</div>
+        </div>
+
+      </div>
+
+      <div id="did-you-know" class="bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">The Assembly Line Analogy</span>
+        </div>
+        <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
+          Picture students lining up for morning assembly, arranged shortest to tallest, but
+          instead of a teacher sorting them all at once, imagine sorting them by comparing just
+          two neighbors at a time. You walk down the line: compare the first two students, and
+          if the taller one is standing in front of the shorter one, they swap places. Move to
+          the next pair, do the same thing. By the time you reach the end of the line, the
+          <strong class="text-[#111827]">tallest</strong> student has "bubbled" all the way to
+          the back. Now you walk down the line again from the start, repeating the whole
+          process, and each full pass pushes the next-tallest student into place. You keep
+          doing full passes until one pass goes by with
+          <strong class="text-[#111827]">no swaps at all</strong>, that's how you know the
+          whole line is finally sorted.
+        </p>
+      </div>
+
+      <div class="pidgin-box bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">For Pidgin Speakers</span>
+        </div>
+        <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
+          Imagine students wey dey line up for morning assembly, dem arrange from shortest to
+          tallest, but instead of teacher to arrange dem one time, imagine say you dey arrange
+          dem by comparing just two person wey dey beside each other at a time. You go waka
+          down the line: compare the first two students, if the taller one dey stand for front
+          of the shorter one, make dem swap position. Move to the next two, do the same thing.
+          By the time you reach the end of the line, the
+          <strong class="text-[#111827]">tallest</strong> student don "bubble" reach the back
+          finish. Now you go waka down the line again from beginning, dey repeat the whole
+          process, and every full waka go push the next-tallest student enter im correct
+          position. You go continue to dey do full waka until one waka pass
+          <strong class="text-[#111827]">without any swap at all</strong>, na so you go know
+          say the whole line don finally arrange well well.
+        </p>
+      </div>
+
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-6 mb-8 max-w-[900px]">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="font-display font-bold text-[18px]">Try it yourself</h2>
+          <span id="step-counter" class="text-[11px] font-code text-[#9CA3AF] bg-[#F8FAFC] px-3 py-1 rounded-md border border-[#E5E7EB]">Step 0</span>
+        </div>
+
+        <p class="text-[12px] text-[#6B7280] font-body mb-3">
+          This unsorted list will be sorted one comparison at a time. Click through to watch
+          each pass push the next-largest value into place.
+        </p>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-2 mb-5">
+          <button id="start-btn" class="px-4 py-2 bg-[#DC2626] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#B91C1C]">Start Sorting</button>
+          <button id="next-btn" class="px-4 py-2 border border-[#E5E7EB] text-[#111827] rounded-lg text-[12px] font-bold font-ui hover:bg-[#F8FAFC]" disabled>Next Comparison →</button>
+        </div>
+
+        <!-- Message area -->
+        <p id="sort-message" class="text-[12px] text-[#6B7280] font-body mb-4 min-h-[18px]"></p>
+
+        <!-- Visual array -->
+        <div id="sort-container" class="flex flex-wrap items-center gap-2"></div>
+      </div>
+
+
+      <div class="mb-5">
+        <h2 class="font-display font-bold text-[22px] mb-2">Where bubble sort shows up in real software</h2>
+        <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[700px]">
+          Bubble sort is rarely the fastest option in production systems, but it earns its
+          place in a few specific situations.
+        </p>
+      </div>
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
+        <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Performance Trick</span>
+        <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Nearly-Sorted Data Detection</h3>
+        <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-4">
+          Because bubble sort can stop the moment an entire pass makes zero swaps, it actually
+          performs very well on data that's <strong class="text-[#111827]">already almost
+          sorted</strong>, a list that's just one or two items out of place gets fixed in a
+          couple of passes, instead of always running the full worst-case number of passes
+          like some other algorithms do regardless of how sorted the input already is.
+        </p>
+
+        <p class="text-[11px] font-bold font-ui text-[#6B7280] uppercase tracking-wide mb-2">
+          Worked example: [1, 2, 4, 3, 5] — only one pair is out of place
+        </p>
+
+        <table class="w-full text-[12px] font-body border-collapse">
+          <thead>
+            <tr class="border-b border-[#E5E7EB] text-left text-[#9CA3AF]">
+              <th class="py-2 pr-3 font-semibold">Pass</th>
+              <th class="py-2 pr-3 font-semibold">Swaps made</th>
+              <th class="py-2 font-semibold">Array after</th>
+            </tr>
+          </thead>
+          <tbody class="font-code">
+            <tr class="border-b border-[#F3F4F6]">
+              <td class="py-2 pr-3">1</td>
+              <td class="py-2 pr-3">1 (swapped 4 and 3)</td>
+              <td class="py-2">[1, 2, 3, 4, 5]</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-3">2</td>
+              <td class="py-2 pr-3">0 — already sorted</td>
+              <td class="py-2">[1, 2, 3, 4, 5]</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
+          For a list of 5 items, the worst case would need up to 4 full passes — but because
+          this list was nearly sorted already, it finished in just 2. That's the early-exit
+          check ("no swaps this pass") you already built into the visualizer above at work.
+        </p>
+      </div>
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
+        <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Education</span>
+        <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Teaching & Visualization</h3>
+        <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+          Bubble sort's real claim to fame is as the standard first sorting algorithm taught
+          to new programmers, its step-by-step comparisons are easy to trace by hand, which
+          is exactly why this very page uses it to introduce sorting.
+        </p>
+      </div>
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
+        <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Constrained Systems</span>
+        <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Simple & Embedded Systems</h3>
+        <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+          For very small, fixed-size datasets, bubble sort's dead-simple code sometimes wins
+          over more complex algorithms, especially in memory-constrained embedded systems
+          where simplicity matters more than raw speed.
+        </p>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+   <script src="/assets/js/shared/pidgin.js"></script>
+  <script src="/assets/js/algorithm/bubble-sort.js"></script>
+   <script src="/assets/js/shared/onboarding.js"></script>
+</body>
+</html>

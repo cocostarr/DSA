@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Search | EduViz DSA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,700;0,800;1,700&family=Poppins:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-white text-[#111827] font-body">
+
+   <!-- ONBOARDING TOUR -->
+  <div id="tour-overlay" class="hidden fixed inset-0 bg-black/40 z-[100] items-center justify-center px-4">
+    <div class="bg-white rounded-xl p-6 max-w-[420px] w-full">
+      <div id="tour-icon" class="text-[32px] mb-3"></div>
+      <h3 id="tour-title" class="font-display font-bold text-[18px] mb-2"></h3>
+      <p id="tour-body" class="text-[13px] text-[#6B7280] leading-[1.65] font-body mb-5"></p>
+
+      <div class="flex items-center justify-between">
+        <div id="tour-dots" class="flex gap-1.5"></div>
+        <div class="flex items-center gap-3">
+          <button id="tour-skip-btn" class="text-[12px] font-bold font-ui text-[#9CA3AF] hover:text-[#6B7280]">Skip</button>
+          <button id="tour-next-btn" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#0F766E]">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="h-16 border-b border-[#E5E7EB] flex items-center px-7 gap-6 bg-white sticky top-0 z-50">
+
+    <a href="../index.html" class="flex items-center gap-2 shrink-0">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+        <rect x="2"  y="16" width="6" height="10" rx="1.5" fill="#0D9488"/>
+        <rect x="11" y="6"  width="6" height="20" rx="1.5" fill="#0D9488"/>
+        <rect x="20" y="11" width="6" height="15" rx="1.5" fill="#0D9488"/>
+      </svg>
+      <span class="font-ui font-bold text-[15px] leading-none">EduViz <span class="text-[#0D9488]">DSA</span></span>
+    </a>
+
+    <div class="flex-1 max-w-[380px]">
+      <input
+        type="search"
+        placeholder="Search a topic, operation, or question..."
+        class="w-full px-4 py-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] text-[13px] font-body"
+      />
+    </div>
+
+    <div class="ml-auto flex items-center gap-3">
+      <div class="flex items-center gap-2 bg-[#F9FAFB] border border-[#E5E7EB] rounded-full px-3 py-1.5">
+        <span class="text-[11px] font-semibold text-[#0D9488] font-ui">EN</span>
+        <button
+          id="pidgin-toggle"
+          class="w-7 h-4 rounded-full bg-[#E5E7EB] relative transition-colors duration-200"
+          aria-pressed="false"
+          aria-label="Toggle Pidgin explanations">
+          <span class="toggle-knob absolute top-0.5 left-0.5 w-3 h-3 rounded-full bg-white shadow transition-all duration-200"></span>
+        </button>
+        <span class="text-[11px] font-semibold text-[#9CA3AF] font-ui">Pidgin</span>
+      </div>
+
+      <a href="array.html" class="px-4 py-2 bg-[#0D9488] text-white rounded-lg text-[12px] font-bold font-ui">
+        Start Learning
+      </a>
+    </div>
+
+  </header>
+
+  <div class="flex">
+
+    <!-- LEFT SIDEBAR -->
+     <aside class="w-[200px] min-w-[200px] h-[calc(100vh-64px)] bg-[#F0FDFA] border-r border-[#CCFBF1] py-4 px-2 sticky top-[64px] overflow-y-auto">
+
+    <!-- EXPLORE -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-2 pb-1">Explore</p>
+    <a href="/index.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui bg-[#CCFBF1] text-[#0D9488]">
+      <i data-lucide="home" class="w-4 h-4"></i> Home</a>
+    <a href="/pages/concepts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="layers" class="w-4 h-4"></i> Concepts</a>
+
+    <!-- DATA STRUCTURES -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Data Structures</p>
+    <a href="/pages/arrays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#3B82F6] shrink-0"></span>Array
+    </a>
+    <a href="/pages/linked-list.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#7C3AED] shrink-0"></span>Linked List
+    </a>
+    <a href="/pages/stack.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#059669] shrink-0"></span>Stack
+    </a>
+    <a href="/pages/queue.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#D97706] shrink-0"></span>Queue
+    </a>
+
+    <!-- ALGORITHMS -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Algorithms</p>
+    <a href="/pages/linear-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Linear Search
+    </a>
+    <a href="/pages/binary-search.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Binary Search
+    </a>
+    <a href="/pages/bubble-sort.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]">
+      <span class="w-2 h-2 rounded-full bg-[#DC2626] shrink-0"></span>Bubble Sort
+    </a>
+
+    <!-- PRACTICE -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">Practice</p>
+    <a href="/pages/practice.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="help-circle" class="w-4 h-4"></i> Quick Quiz</a>
+    <a href="/pages/practice.html#past-questions" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="file-text" class="w-4 h-4"></i> Past Questions</a>
+
+    <!-- MORE -->
+    <p class="text-[10px] font-bold font-ui tracking-wider text-[#9CA3AF] uppercase px-2 pt-3 pb-1">More</p>
+    <a href="/pages/about.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]"><i data-lucide="info" class="w-4 h-4"></i> About Project</a>
+
+     <button id="tour-help-btn" type="button" class="w-full text-left appearance-none bg-transparent border-0 flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[12px] font-medium font-ui text-[#6B7280] hover:bg-[#CCFBF1] hover:text-[#0D9488]" 
+     style="font-family: 'Space Grotesk', sans-serif;"> <i data-lucide="help-circle" class="w-4 h-4"></i> Site Tour</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 px-9 pb-7">
+
+      <!-- HEADER + PREVIEW -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-6 items-center mb-8 pt-6 max-w-[900px]">
+
+        <div>
+          <span class="inline-block bg-[#FEF2F2] text-[#DC2626] text-[10px] font-bold font-ui px-3 py-1 rounded-full tracking-wide uppercase mb-3">
+            Algorithms
+          </span>
+          <div class="flex items-center gap-3 mb-3">
+            <h1 class="font-display font-bold text-[32px]">Binary Search</h1>
+            <span class="text-[12px] font-code font-bold text-[#DC2626] bg-[#FEF2F2] px-3 py-1 rounded-md border border-[#FECACA]">O(log n)</span>
+          </div>
+          <p class="text-[13px] text-[#6B7280] leading-[1.75] font-body">
+            Binary search only works on a <strong class="text-[#111827]">sorted</strong> list
+            but in exchange, it's dramatically faster than linear search. Instead of checking
+            every item, it jumps to the middle, decides which half the value must be in, and
+            throws the other half away completely cutting the search space in half every step.
+          </p>
+        </div>
+
+        <div class="bg-[#F8FAFC] rounded-lg p-5 flex items-center gap-1.5">
+          <div class="w-11 h-11 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[14px] font-code text-[#9CA3AF]">2</div>
+          <div class="w-11 h-11 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[14px] font-code text-[#9CA3AF]">5</div>
+          <div class="w-11 h-11 border-2 border-[#DC2626] rounded-lg flex items-center justify-center text-[14px] font-code text-white bg-[#DC2626]">9</div>
+          <div class="w-11 h-11 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[14px] font-code text-[#9CA3AF]">14</div>
+          <div class="w-11 h-11 border-2 border-[#E5E7EB] rounded-lg flex items-center justify-center text-[14px] font-code text-[#9CA3AF]">21</div>
+        </div>
+
+      </div>
+
+      <div id="did-you-know" class="bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">The Dictionary Analogy</span>
+        </div>
+        <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
+          Remember the attendance sheet from Linear Search, names written down in random
+          arrival order, forcing you to check one by one? A dictionary is the complete
+          opposite. Every word is arranged <strong class="text-[#111827]">alphabetically</strong>,
+          and that single fact changes everything about how you search it. Nobody looks up
+          "zebra" by starting at page 1 — you flip roughly to the middle, see you've landed in
+          the M's, realize Z comes after M, and immediately ignore the entire first half of the
+          book. Then you repeat the trick on the remaining half, and the half after that, until
+          you land on the page. Each flip throws away roughly half of what's left. That's
+          binary search: it only works because the data has
+          <strong class="text-[#111827]">order to exploit</strong> the exact thing linear
+          search's random attendance sheet didn't have.
+        </p>
+      </div>
+
+      <div class="pidgin-box bg-[#F0FDFA] border border-[#99F6E4] rounded-xl p-5 mb-8 max-w-[900px]">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="text-[10px] font-bold text-[#0D9488] tracking-wide uppercase font-ui">For Pidgin Speakers</span>
+        </div>
+        <p class="text-[13px] text-[#134E4A] leading-[1.75] font-body">
+          You remember the attendance sheet wey we talk for Linear Search, names wey dem write
+          anyhow as students waka enter, wey force you to check one by one? Dictionary na
+          complete opposite. Every word dey arrange <strong class="text-[#111827]">alphabetically</strong>,
+          and that one fact dey change everything about how you go search am. Nobody go dey
+          find "zebra" from page 1 — you go flip go roughly middle, you see say you land for
+          M's, you realize say Z dey come after M, you go straight ignore the whole first half
+          of the book. Then you go repeat the trick for the remaining half, and the half wey
+          remain again, until you land for the page. Every flip dey throw away roughly half of
+          wetin remain. Na so binary search dey work: e fit work because the data get
+          <strong class="text-[#111827]">order wey you fit use</strong>, the exact thing wey
+          linear search anyhow attendance sheet no get.
+        </p>
+      </div>
+
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-6 mb-8 max-w-[900px]">
+        <div class="flex items-center justify-between mb-5">
+        <h2 class="font-display font-bold text-[18px]">Try it yourself</h2>
+        <span id="step-counter" class="text-[11px] font-code text-[#9CA3AF] bg-[#F8FAFC] px-3 py-1 rounded-md border border-[#E5E7EB]">Step 0</span>
+        </div>
+
+        <p class="text-[12px] text-[#6B7280] font-body mb-3">
+          This list is already sorted. Enter a value to search for, then step through how binary
+          search narrows in on it.
+        </p>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-2 mb-5">
+          <input
+            type="text"
+            id="search-value"
+            placeholder="Value to find"
+            maxlength="6"
+            class="px-3 py-2 rounded-lg border border-[#E5E7EB] text-[13px] font-code w-[140px]"
+          />
+          <button id="start-btn" class="px-4 py-2 bg-[#DC2626] text-white rounded-lg text-[12px] font-bold font-ui hover:bg-[#B91C1C]">Start Search</button>
+          <button id="next-btn" class="px-4 py-2 border border-[#E5E7EB] text-[#111827] rounded-lg text-[12px] font-bold font-ui hover:bg-[#F8FAFC]" disabled>Next Step →</button>
+        </div>
+
+        <!-- Message area -->
+        <p id="search-message" class="text-[12px] text-[#6B7280] font-body mb-4 min-h-[18px]"></p>
+
+        <!-- Pointer labels -->
+        <div id="pointer-labels" class="flex gap-1.5 mb-1 min-h-[16px]"></div>
+
+        <!-- Visual array -->
+        <div id="search-container" class="flex flex-wrap items-center gap-2"></div>
+      </div>
+
+
+      <div class="mb-5">
+        <h2 class="font-display font-bold text-[22px] mb-2">Where binary search shows up in real software</h2>
+        <p class="text-[12px] text-[#6B7280] leading-[1.7] font-body max-w-[700px]">
+          Anywhere data is sorted and the dataset is large, binary search's speed advantage
+          becomes too valuable to ignore.
+        </p>
+      </div>
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
+        <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Software Engineering</span>
+        <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Git Bisect</h3>
+        <p class="text-[12px] text-[#6B7280] font-body leading-[1.65] mb-4">
+          When a bug appears somewhere in a project's history but nobody knows which commit
+          introduced it, <span class="font-code text-[#DC2626]">git bisect</span> finds it using
+          binary search. Commits are naturally "sorted" by time, so Git checks out the middle
+          commit between a known-good and known-bad point, you test it, and Git throws away
+          half the history based on your answer repeating until the exact commit is found.
+        </p>
+
+        <p class="text-[11px] font-bold font-ui text-[#6B7280] uppercase tracking-wide mb-2">
+          Worked example: 8 commits, bug introduced at commit 6
+        </p>
+
+        <table class="w-full text-[12px] font-body border-collapse">
+          <thead>
+            <tr class="border-b border-[#E5E7EB] text-left text-[#9CA3AF]">
+              <th class="py-2 pr-3 font-semibold">Range</th>
+              <th class="py-2 pr-3 font-semibold">Commit tested</th>
+              <th class="py-2 font-semibold">Result</th>
+            </tr>
+          </thead>
+          <tbody class="font-code">
+            <tr class="border-b border-[#F3F4F6]">
+              <td class="py-2 pr-3">1 – 8</td>
+              <td class="py-2 pr-3">4</td>
+              <td class="py-2 text-[#059669]">Good — bug not here yet</td>
+            </tr>
+            <tr class="border-b border-[#F3F4F6]">
+              <td class="py-2 pr-3">5 – 8</td>
+              <td class="py-2 pr-3">6</td>
+              <td class="py-2 text-[#DC2626]">Bad — bug is present</td>
+            </tr>
+            <tr class="border-b border-[#F3F4F6]">
+              <td class="py-2 pr-3">5 – 6</td>
+              <td class="py-2 pr-3">5</td>
+              <td class="py-2 text-[#059669]">Good — bug not here yet</td>
+            </tr>
+            <tr>
+              <td class="py-2 pr-3">6 – 6</td>
+              <td class="py-2 pr-3">6</td>
+              <td class="py-2 text-[#DC2626] font-bold">Bad — commit 6 is the culprit</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="text-[11px] text-[#9CA3AF] font-body mt-3">
+          Only 4 tests were needed to pinpoint the exact commit out of 8 — checking each one
+          individually would have taken up to 8 tests instead.
+        </p>
+      </div>
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
+        <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Databases</span>
+        <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Database Indexing</h3>
+        <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+          Databases keep sorted index structures (often B-trees, a relative of binary search)
+          so that looking up a record among millions of rows takes only a handful of
+          comparisons instead of scanning the whole table.
+        </p>
+      </div>
+
+      <div class="bg-white border border-[#E5E7EB] rounded-xl p-5 mb-6 max-w-[900px]">
+        <span class="bg-[#FEF2F2] text-[#DC2626] text-[11px] font-bold font-ui px-3 py-1 rounded-full">Games</span>
+        <h3 class="text-[14px] font-bold font-ui mt-3 mb-2">Number Guessing Games</h3>
+        <p class="text-[12px] text-[#6B7280] font-body leading-[1.65]">
+          The optimal strategy for a "guess a number between 1 and 100" game is binary search:
+          guess 50, get told higher or lower, guess the new midpoint, and repeat, solving it
+          in at most 7 guesses no matter what the number is.
+        </p>
+      </div>
+
+      <!-- Next page -->
+      <div class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+          <a href="/pages/bubble-sort.html" class="group relative w-11 h-11 rounded-full bg-[#0D9488] shadow-md flex items-center justify-center text-white hover:bg-[#0F766E]">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <span class="absolute bottom-full mb-2 right-0 whitespace-nowrap bg-[#111827] text-white text-[11px] font-ui px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none"> Bubble Sort</span>
+          </a>
+      </div>
+    </main>
+
+  </div>
+
+   <script>
+    lucide.createIcons();
+  </script>
+  <script src="/assets/js/algorithm/binary-search.js"></script>
+  <script src="/assets/js/shared/pidgin.js"></script>
+  <script src="/assets/js/shared/onboarding.js"></script>
+</body>
+</html>
